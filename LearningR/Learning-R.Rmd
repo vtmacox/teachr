@@ -48,9 +48,6 @@ www.r-project.org
 - Editor
 - Graphics Device
 
-### **R** user interface
-
-![](H:/teachr/teachr/R console.png)
 
 ## **RStudio**
 
@@ -74,6 +71,24 @@ The most useful elements of R studio include:
 - Shiny app (interactive controls and figures)
 
 - Markdown (R Markdown, R Presentations, R HTML, etc.)
+
+## Install R
+
+- Go to www.r-project.org and click "download R"
+- Select a server from which to download **R** (try https://cloud.r-project.org/)
+- Select the link for the operating system you are using
+    - If you're using Windows click "install R for the first time" and the click the link that begins "Download..."
+    - For Mac users, click on the first link in the left column under "Files:"
+    
+## Install RStudio
+
+- Go to https://www.rstudio.com/
+- Click "RStudio"
+- Click "Desktop"
+- Click "DOWLOAD RSTUDIO DESKTOP"
+- Scroll to the bottom and and select the link that has your operating system
+- NOTE: RStudio changes their layout so these steps might not always be the same
+
 
 ## Objects in **R**
 

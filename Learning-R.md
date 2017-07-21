@@ -51,7 +51,7 @@ Parts of the R graphic user interface
 R user interface
 ========================================================
 
-![](H:/Presentations/R console.png)
+<img src="H:/teachr/teachr/LearningR/R-console.png" title="plot of chunk fig2" alt="plot of chunk fig2" width="100%" />
 
 
 R studio

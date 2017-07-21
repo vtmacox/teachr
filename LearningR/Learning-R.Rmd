@@ -7,12 +7,77 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(exercise.checker = checkr::checkr_tutor)
 ```
 
+## Learning Objectives
+
+- Learn how to better interface with data analysts by learning basic data analysis skills
+- Learn how to learn to use **R** and **RStudio**
+
+## Analyzing Data
+
+- Understanding how data are read in and manipulated can help you be a better researcher
+    - How to create databases
+    - How new variables are created
+    - Knowing which variables are which type
+    - Knowing which analyses you can run based on the type of data you have
+
+### Data analysis programs
+
+Most popular data analysis programs for scholarly articles of 2016
+
+![](https://i1.wp.com/r4stats.com/wp-content/uploads/2017/06/Fig_2a_ScholarlyImpact2016-3.png)
+
+http://r4stats.com/articles/popularity/ 
+
+## About **R**
+
+**R** is an open source, object oriented "language and environment for statistical computing and graphics".
+
+www.r-project.org
+
+**R** is popular because:
+- It's free
+- It has a broad support network where users can ask and answer questions
+- It is highly adaptable through the use of packages
+
+### Parts of the R graphic user interface
+
+- Console 
+- Editor
+- Graphics Device
+
+### **R** user interface
+
+![](H:/teachr/teachr/R console.png)
+
+## **RStudio**
+
+The basic **R** GUI is not optimized for users
+
+**RStudio** is a separate integrated development environment that enhances the usability of R in several ways
+
+Basic enhancements from R studio include:
+
+  - Easier navigation of multiple scripts, plots, packages, and global environment
+  - Code completion
+  - Color coding of code
+  - Easier debugging
+  
+The most useful elements of R studio include:
+
+- Projects (grouping all related R files and workspaces together)
+
+- Version control (through Git or other service)
+
+- Shiny app (interactive controls and figures)
+
+- Markdown (R Markdown, R Presentations, R HTML, etc.)
 
 ## Objects in **R**
 
-Almost anything can be stored as an object in **R**.  Here, we save the operation of `1 + 1` to an object called `x` and then print that object.
+Almost anything can be stored as an object in **R**.  Here, we save the operation of `1 + 1` to an object called `x` and then print that object. **NOTE:** **R** is case sensitive so an object called `x` is different than an object called `X`.
 
 ```{r r_object, echo=TRUE}
 
@@ -24,23 +89,38 @@ x
 The `<-` symbol tells **R** you want to assign whatever is on the right of the sybol to the object on the left of the symbol.  In this example, we are assigning the value of `1 + 1` to the object `x`.  An important point is that **R** is evaluating the expression `1 + 1` and storing the value of the expression.  It doesn't actually store `1 + 1`.  Also, by default, **R** doesn't display objects unless explicitly requested.   
 
 
-### Exercise 
+### Your first object in **R**
 
 Write the R code required to add two plus two and store it as an object called `y` and print the object:
 
-```{r two_plus_two, exercise=TRUE}
+```{r exercise1, exercise=TRUE}
+# Create and object that stores the value of 2 + 2 and save it as an object called y
+# Don't forget to print the object too
 
 ```
 
-```{r two_plus_two-solution}
+```{r exercise1-solution}
 y <- 2 + 2
 y
 ```
 
 
-### Exercise with Code
+### More obejcts
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+Obejects can take on many complicated values.  They can be characters:
+
+```{r}
+char_ob <- "Values that are characters in R are called strings."
+char_ob
+```
+
+They can contain multiple values.  If you have multiple values, compbine them by using the `c()` function.  For example:
+
+```{r}
+numbers <- c(1, 2, 3, 4, 5)
+numbers
+```
+
 
 Now write a function that adds any two numbers and then call it:
 

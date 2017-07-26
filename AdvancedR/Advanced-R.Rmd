@@ -1,0 +1,80 @@
+---
+title: "Advanced R"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(exercise.checker = checkr::checkr_tutor)
+```
+
+
+## Objectives
+
+If you have completed the `Learning R` tutorial, then you are familiar with the basics of how to use **R**.  In this tutorial we will build on these skills and learn several advanced **R** coding techniques.  Specifically, this tutorial will focus on:
+
+- Using the `dplyr` package for advance data manipulation and data wrangleing
+- Using the `ggoplot2` package to create graphs and figures
+- Using **RStudio** to create dynamic reproducible reports
+
+## Welcome to the Tidyverse!
+
+In the last tutorial, we learned about **R** and how to use base **R** code and functions to read in and manipulate data. While this code is very useful, it can be somewhat difficult to use.  For example, when you reference variables in a dataframe, you have to first reference the dataframe, then use the `$` symbol, and then reference the variable.  This is cumbersome, especially when you have to reference multiple variables.  Additionally, R code is difficult to read.  Often functions are nested within one another and in order to understand what the code is trying to do, you have to read the inside most function first, then read each subsequent outer function.  
+
+Fortunately, there are a collection of packages that make **R** easier to read and easier to write.  Hadely Wickham, a dat scientist at **RStudio** and adjunct professor of Psychology at Rice University, has created a collection of packages for enhancing **R** code called `tidyverse` which is a package that installs and loads a series of packages.  We are going to focus on a few of these packages.
+
+The first package we will be using is the `dplyr` package.  This package is useful for "data wrangeling" or manipulating data.  Let's start by installing and loading the `tidyverse` package which will install and load the `dplyr` package.
+
+```{r load_package, exercise = TRUE}
+# Install and load the tidyverse package here
+
+
+```
+
+
+```{r load_package-hint}
+install.packages("tidyverse")
+
+library(tidyverse)
+
+```
+
+
+Now that the package is loaded, let's redo an exercise we did in the last tutorial.  Let's go back to the `starwars` dataframe and create a BMI variable. 
+
+In the space below, use create the BMI variable the way you were taught in the last tutorial.
+
+```{r bmi1, exercise = TRUE}
+
+
+```
+
+
+```{r bmi-solution,  exercise.eval = TRUE}
+starwars$bmi <- starwars$mass/(starwars$height/100)^2
+
+```
+
+
+
+
+```{r quiz}
+quiz(
+  question("Which package contains functions for installing other R packages?",
+    answer("base"),
+    answer("tools"),
+    answer("utils", correct = TRUE),
+    answer("codetools")
+  ),
+  question("Which of the R packages listed below are used to create plots?",
+    answer("lattice", correct = TRUE),
+    answer("tools"),
+    answer("stats"),
+    answer("grid", correct = TRUE)
+  )
+)
+```
+

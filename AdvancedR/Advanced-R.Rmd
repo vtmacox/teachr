@@ -126,7 +126,7 @@ starwars %>%
 ```
 
 
-The `dplyr` package has a number of very helpful vignettes that will show you have to use the functions that we've gone over and several other ones we haven't gone over.
+The `dplyr` package has a number of very helpful vignettes that will show you have to use the functions that we've gone over and several other ones we haven't.
 
 
 ## Plotting with `ggplot2`
@@ -134,11 +134,67 @@ The `dplyr` package has a number of very helpful vignettes that will show you ha
 Another thing that **R** is known for is creating publication quality plots, graphs, and other images.  There are functions in base **R** that allow you to plot data.  Here is an example.
 
 ```{r, echo=TRUE}
-plot(cars)
+plot(cars, cex = 3, pch = ".")
 ```
 
+The plot above is a plot of two variables; `speed` along the x axis and `dist` alond the y axis.  You can see that the plot isn't very interesting.  **R** allows for advance customization of plots.  We can change almost anything about the plot using code, but the code isn't very easy to use.  For example, the argument for changing the size of the points is `cex` and the argument for changing the shape is `pch`.
+
+Because arguments aren't intuitive, Hadely Wickham created one of the most popular packages for **R** called `ggplot2` which uses the grammar of graphics (hence gg).  It's so popular that if you use *RStuido* the package is already loaded.  The `ggplot2` package uses facets to build a plot.  
+
+```{r}
+dat <- data.frame(
+  time = factor(c("Lunch","Dinner"), levels=c("Lunch","Dinner")),
+  total_bill = c(14.89, 17.23)
+)
+
+# Very basic bar graph
+ggplot(data=dat, aes(x=time, y=total_bill)) +
+    geom_bar(stat="identity")
 
 
+# Map the time of day to different fill colors
+ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
+    geom_bar(stat="identity")
+
+## This would have the same result as above
+# ggplot(data=dat, aes(x=time, y=total_bill)) +
+#    geom_bar(aes(fill=time), stat="identity")
+
+
+# Add a black outline
+ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
+    geom_bar(colour="black", stat="identity")
+
+
+# No legend, since the information is redundant
+ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
+    geom_bar(colour="black", stat="identity") +
+    guides(fill=FALSE)
+```
+
+In the code above, we created a very simple dataframe using the `data.frame()` function.  The first plot is a very basic bar plot.  First we call the `ggplot()` function.  The first argument in the function is `dat` which is the dataframe from which the we will be referencing variables.  The second argument is a call to the `aes()` function.  `aes` stands for aesthetics.  In this function we specify the variables for the `x` and `y` axes.  This is the first facet--the data.  We then use the `+` to indicate a second facet to our plot.  The `+` here serves as similar function as the `%>%` symbol in `dplyr`.  The only difference is we aren't piping, we are adding to previous commands.  The next facet is the `geom_bar()` function which indicates we want a barplot.  The argument `stat = "identity"` indicates we want to display the value of the data.  If we didn't use the argument, by default it would have used the frequences of the `x` variable which we don't want.  
+
+The second plot is the same as the first except we are providing different colors for the different values of `time` by adding the `fill` argument to the `aes` function.  Because we specified that `time` is a factor, `ggplot2` while auto assign colors to each level of the factor. Also, because we specified the `fill` argument, `ggplot2` created a key showing what each color represents.
+
+The third plot adds a border around each bar by specifying the `color` argument in the `geom_bar()` function.  
+
+The fourth plot removes the key by adding the `guide()` function and assigning the `fill` argument to false.  Essentially this overrides the default behavior of automatically creating a key when we specified the `fill` argument in the `aes()` function.  
+
+***
+
+There are a number of faceting options that you can use, but we aren't going to go over them all here.  Here are a couple references to getting started with `ggplot2`:
+
+http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization
+
+http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2)/
+
+http://r4ds.had.co.nz/data-visualisation.html
+
+## **RStudio**
+
+Up to this point we have only been using **RStudio** passively.  Essentially, we have just been running **R** within the **RStuido** environment.  **RStudio** has a whole host of features that make it useful for creating scholarly work.  
+
+*
 
 ```{r quiz}
 quiz(

@@ -42,20 +42,99 @@ library(tidyverse)
 
 ```
 
+### Creating variables with `dplry`
 
 Now that the package is loaded, let's redo an exercise we did in the last tutorial.  Let's go back to the `starwars` dataframe and create a BMI variable. 
 
-In the space below, use create the BMI variable the way you were taught in the last tutorial.
+In the space below, create the BMI variable the way you were taught in the last tutorial.
 
-```{r bmi1, exercise = TRUE}
+```{r bmi1, exercise = TRUE,  exercise.eval = TRUE}
 
 
 ```
 
 
-```{r bmi-solution,  exercise.eval = TRUE}
+```{r bmi1-solution}
 starwars$bmi <- starwars$mass/(starwars$height/100)^2
 
+```
+
+In the code you created, we have to make a reference to the `starwars` dataframe each time we reference a variable, even the new one we are creating.  This is unnecessary with using `dplyr`
+
+`dplyr` uses a method called *piping* to string together data and commands.  Let's break down an example.  Below is the code that produces the same results as above, but uses `dplyr`.
+
+```{r, echo=TRUE}
+starwars <- starwars %>% 
+  mutate(bmi = mass/(height/100)^2)
+  
+```
+
+In the code above we start with asigning a new value to the dataframe `starwars`.  Essentially we are just overwriting this dataframe with the same dataframe plus the new variable we will create.  To the right of the assign symbol, we reference the data that we will be using--in this case the `starwars` dataframe.  The `%>%` sybmol is part of the piping system.  It tells **R** that the code on the following lines uses whatever came before that symbol.  On the next line we use the `mutate()` function from `dplyr`.  This function creates variables.  In the function we specify the variable name we want to create and set it equal to the equation for calculating BMIs.  Notice that we don't have to reference the starwars dataframe at any point following the first reference, yet we still know what dataframe we are referencing from the first line of code.
+
+While we didn't save a lot of time and space for creating one variable, if you were creating several variables, this would be a huge time saver.  
+
+### Subsetting data with `dplyr`
+
+Another nice thing about `dplyr` is that you can perform multiple operations/functions at the same time.  
+
+In the last tutorial we calculated the bmi of the participants and then we subset the data to only include obsese participants.  In the code below we will do this and we will limit the data to only the `height`, `mass`, and `bmi` variables.  
+
+```{r bmi2, echo=TRUE}
+starwars2 <- starwars %>% 
+  mutate(bmi = mass/(height/100)^2,
+         obese = if_else(bmi >= 30, 1, 0)) %>% 
+  dplyr::filter(obese == 1) %>% 
+  dplyr::select(height, mass, bmi)
+
+head(starwars2)
+
+```
+
+The code above builds on the previous code.  We have the same code except now we are creating another variable called `obese`.  This variable is created in the same `mutate()` function but we seperate this variable from the previous with a `,`.  Once we have finished with the `mutate()` function we use the `%>%` to indicate we are using another function.  Next we use the `filter()` function from dplyr to say we want to limit our data to only obese people using the `obese` variable we just created.  The final function is `select()` and we list the variables we want in our final dataset. Notice that we don't have to have the variable names in quote for this function.  
+
+You will notice that there is a `dplyr::` prefix to the `filter()` and `select()` functions.  This is a way to specify the package you want the function to come from.  In the last tutorial I mentioned that functions from different packages can have the same name.  This is the case for the `filter()` and `select()` functions.  By using `dplyr::` prefix we make sure that we are using functions from the `dplyr` package.  We could have done this with the `mutate()` function too but we didn't need to.  
+
+You can use non `dplyr` function within the piping framework.  For example 
+
+```{r, echo=TRUE}
+starwars %>% 
+  mutate(bmi = mass/(height/100)^2,
+         obese = if_else(bmi >= 30, 1, 0)) %>% 
+  dplyr::filter(obese == 1) %>% 
+  dplyr::select(height, mass, bmi) %>% 
+  lapply(., function(x) mean(x, na.rm = T)) %>% 
+  as.data.frame(.)
+
+```
+
+The second to last line of code uses the `lapply()` function, but the data argument of the function has the `.` symbol which means that we want to use the data that has been piped to this point.  The data is the filtered data with only the variables we selected. The last line turns the result of the previous line into a dataframe.  You can see that the piping allows us to clearly follow all the steps of how the data were manipulated in a linear fashion.
+
+Now lets have you try to use `dplyr` and piping.  Use piping and `dplry` functions to filter only participants with brown hair and output the frequencies for the gender, species, and homeworld for those characters.
+
+```{r exercise2, exercise = TRUE,  exercise.eval = TRUE}
+
+
+```
+
+
+```{r exercise2-solution}
+starwars %>% 
+  dplyr::filter(hair_color == "brown") %>% 
+  dplyr::select(gender, species, homeworld) %>% 
+  lapply(., table) 
+
+```
+
+
+The `dplyr` package has a number of very helpful vignettes that will show you have to use the functions that we've gone over and several other ones we haven't gone over.
+
+
+## Plotting with `ggplot2`
+
+Another thing that **R** is known for is creating publication quality plots, graphs, and other images.  There are functions in base **R** that allow you to plot data.  Here is an example.
+
+```{r, echo=TRUE}
+plot(cars)
 ```
 
 

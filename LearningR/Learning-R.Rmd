@@ -51,8 +51,11 @@ www.r-project.org
 ### Parts of the R graphic user interface
 
 - Console 
+    - Where code is executed
 - Editor
+    - Where we write our code in what are called "scripts"
 - Graphics Device
+    - Where our plots and other graphics are displayed
 
 
 ## **RStudio**
@@ -363,6 +366,8 @@ Use the space below to print the `age` variable in the `tolerance` dataframe.
 tolerance$age
 
 ```
+
+Depending on what function you are using to read in your data, **R** makes certain assumptions about the type of data you are reading in.  For example, if you are reading in text using the `read.table()` function assumes any text is a factor (a categorical variable).  For example if you had a variable `race` and the response are white, black, hispanic, etc., it would think that variable is categorical and could randomly assign a value as the reference category.  Usually you want `white` as the reference category but this may not be the case.  You can assign variable types using functions.  For example we could use the `as.factor(df$race, levels = c("white", "black", "hispanic", "asian"))` function to explicate we want the variable to be a factor and because we put `white` as the first level in the `levels` argument, `white` is the reference category.  Usually, you can use `as.[data type]` to explicate a data type for a variable.  
 
 ## Manipulating Data
 

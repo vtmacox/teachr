@@ -190,13 +190,13 @@ obj_types <- data.frame(data_type = c("Continuous", "Categorical", "Count", "Tex
 knitr::kable(obj_types)
 ```
 
-An object that contains multiple data points of the same type is called a vector.  Our object `numbers` above would be considered a numeric vector and the `char_ob2` object would be considered a character vector. An individual datum in a vector is called an element.  So the first element in our `numbers` object is 1.  We can tell **R** to pull specific element within an object why specifing the elements position in the object. For example:
+An object that contains multiple data points of the same type is called a vector.  Our object `numbers` above would be considered a numeric vector and the `char_ob2` object would be considered a character vector. An individual datum in a vector is called an element.  So the first element in our `numbers` object is 1.  We can tell **R** to pull specific element within an object why specifying the elements position in the object. For example:
 
 ```{r, echo=TRUE, exercise.setup = "obj"}
 numbers[3]
 ```
 
-The code above pulls the 3rd element out of the object `numbers` which just so happens to be 3.  We do this by referencing the object and then specifiyng the element position in brackets immediatly after referencing the object.
+The code above pulls the 3rd element out of the object `numbers` which just so happens to be 3.  We do this by referencing the object and then specifying the element position in brackets immediately after referencing the object.
 
 In the code below, print the output for the 2nd element in the object `char_ob2`:
 
@@ -252,11 +252,11 @@ add(x = 3, y = 1)
 
 ```
 
-In the example above you can see we are assigning the function to the name `add`.  After the `<-` symbol, we use `function()` to say we are creating a function.  Inside the parentheses are the arguments that the user is going to specify. Arguments are seperated by commas.  Everything between the brackets is what our function does.  In this example we take the value `x` supplied by the user and add it to the value `y` which is also supplied by the user. We use the `return()` function to explicitly say we want the value of the object `res` returned (or outputted).  This way we can store the value if we want.
+In the example above you can see we are assigning the function to the name `add`.  After the `<-` symbol, we use `function()` to say we are creating a function.  Inside the parentheses are the arguments that the user is going to specify. Arguments are separated by commas.  Everything between the brackets is what our function does.  In this example we take the value `x` supplied by the user and add it to the value `y` which is also supplied by the user. We use the `return()` function to explicitly say we want the value of the object `res` returned (or outputted).  This way we can store the value if we want.
 
 When we call the `add()` function we specified the argument values.  This is generally good practice, but isn't necessary.  You would get the same results if you used the code `add(3, 1)`.  If you don't explicitly specify the arguments, **R** assumes you are specifying them in the order they are specified in the function call.  In this example we specified x first, then y.
 
-In general, you want to create a function when you are useing the same set of code over and over again.  Using a function saves space an time.  For example, if you needed to recode or reformat data, using a function might save you a lot of time.  
+In general, you want to create a function when you are using the same set of code over and over again.  Using a function saves space an time.  For example, if you needed to recode or reformat data, using a function might save you a lot of time.  
 
 ### Packages in **R**
 
@@ -322,9 +322,9 @@ head(tolerance)
 
 ```
 
-Notice that the file path is in quotes and uses `/` instead of `\` to indicate folders.  All file paths need to be in quotes in **R** and need to use either `/` or `\\` or you will get an error.  We also indicated that there is a header in thie file and that the columns/variables are seperated by a `,`.  Notice that the `,` is surrounded by quotes.  
+Notice that the file path is in quotes and uses `/` instead of `\` to indicate folders.  All file paths need to be in quotes in **R** and need to use either `/` or `\\` or you will get an error.  We also indicated that there is a header in the file and that the columns/variables are separated by a `,`.  Notice that the `,` is surrounded by quotes.  
 
-We've read in the data and we used the `head()` function to look at the first 5 rows of the data as well as the variable names.  We can see we have 6 variables.  If you run this code in **RStudio** you can look at the data by clicking on the "Environment" Tab in the upper right window and then clicking on the object, or you can use the `View()` function.  The "Environment" tabe will also tell you how many rows there are.  You can also see how many rows there are by using the `nrow()` function.  Use the space below to determine how many rows there are in this dataframe.
+We've read in the data and we used the `head()` function to look at the first 5 rows of the data as well as the variable names.  We can see we have 6 variables.  If you run this code in **RStudio** you can look at the data by clicking on the "Environment" Tab in the upper right window and then clicking on the object, or you can use the `View()` function.  The "Environment" tab will also tell you how many rows there are.  You can also see how many rows there are by using the `nrow()` function.  Use the space below to determine how many rows there are in this dataframe.
 
 ```{r data, exercise = TRUE, exercise.eval = TRUE, exercise.setup = "data_prep"}
 
@@ -366,7 +366,7 @@ tolerance$age
 
 ## Manipulating Data
 
-In this section we will take everything we have learned so far and begin to manipulate data.  We will go over how to create new variables using conditional statements and arithematic fucntions.
+In this section we will take everything we have learned so far and begin to manipulate data.  We will go over how to create new variables using conditional statements and arithmetic functions.
 
 ### Creating new variables
 
@@ -384,7 +384,7 @@ head(tolerance)
 
 You can see that there are now 7 variables in the dataframe with the last variable being the one we created.  You can see that it is just a column of 1's.  If you append a variable to a dataframe in **R**, the software assumes you want that value to apply to all rows.  
 
-Let's look at a different database.  We are going to use the `starwars` data contained in the `dplyr` package we loaded before.  This dataframe contains a hight variable and a mass variable.  Let's calculate the BMI for each person and store it as a variable called `bmi` in the starwars database.
+Let's look at a different database.  We are going to use the `starwars` data contained in the `dplyr` package we loaded before.  This dataframe contains a height variable and a mass variable.  Let's calculate the BMI for each person and store it as a variable called `bmi` in the starwars database.
 
 ```{r bmi, echo = TRUE}
 starwars$bmi <- starwars$mass/(starwars$height/100)^2
@@ -408,7 +408,7 @@ Let's look at how much missing data we have for our new variable.  We will use t
 is.na(starwars$bmi)
 ```
 
-This function on its own isn't useful since it just is a vector of `TRUE` or `FALSE` values.  But we can use the `is.na()` fucntion in conjunction with the `table()` function to sum the values of true and false.
+This function on its own isn't useful since it just is a vector of `TRUE` or `FALSE` values.  But we can use the `is.na()` function in conjunction with the `table()` function to sum the values of true and false.
 
 ```{r table_bmi, echo = TRUE, exercise.setup = "bmi"}
 table(is.na(starwars$bmi))
@@ -418,7 +418,7 @@ This is much more useful.  We can see that we have 28 missing values for our `bm
 
 ### Conditional formating
 
-We can also recode variables using conditional statements.  Conditional statements are `if()`, `else()`, and `ifelse()` functions.  We can use these functions to evaluate statements and return values based on wether those statements are `TRUE` or `FALSE`.  Let's take our new `bmi` variable and use the values to classify if they are obese or not and store this into a new variable called `obese`:
+We can also recode variables using conditional statements.  Conditional statements are `if()`, `else()`, and `ifelse()` functions.  We can use these functions to evaluate statements and return values based on whether those statements are `TRUE` or `FALSE`.  Let's take our new `bmi` variable and use the values to classify if they are obese or not and store this into a new variable called `obese`:
 
 ```{r obese, echo = TRUE}
 starwars$obese <- ifelse(starwars$bmi >= 30, 1, 0)
@@ -432,11 +432,20 @@ starwars$obese <- ifelse(starwars$bmi >= 30, 1, 0)
 starwars$obese
 ```
 
-The first argument of the `ifelse()` function is the conditional statement.  The second arguement is the value to assign the object if the conditional statement is true.  The third arguement is the value to assign the object if the conditional statement is false. 
+The first argument of the `ifelse()` function is the conditional statement.  The second argument is the value to assign the object if the conditional statement is true.  The third argument is the value to assign the object if the conditional statement is false. 
 
-The code above evaluates wether the `bmi` variable is greater than or equal to 30 (the conditional statement).  If it is true it assigns our new variable `obese` to the value 1.  If it is false, it assigns the variable the value of 0.  We could have assigned it any value we want (like `TRUE` and `FALSE` or "Yes" and "No"), but it's better to use numeric coding when possible.
+The code above evaluates whether the `bmi` variable is greater than or equal to 30 (the conditional statement).  If it is true it assigns our new variable `obese` to the value 1.  If it is false, it assigns the variable the value of 0.  We could have assigned it any value we want (like `TRUE` and `FALSE` or "Yes" and "No"), but it's better to use numeric coding when possible.
 
 The code above is a very simple conditional statement.  If you have very simple conditional statements, `ifelse()` is easier to use (i.e., is has less code to run).  You can create very complicated conditional statements using the `if()` and `else()` statements, but we won't focus on that here.  
+
+There are several conditional operators that are worth remember
+
+```{r}
+cond_ops <- data.frame(Operator = c("==", "!=", ">", "<", ">=", "<=", "&", "|"), Meaning = c("Equal", "Not Equal", "Greater than", "Less than", "Greater than or equal", "Less than or equal", "And", "Or"))
+
+knitr::kable(cond_ops)
+```
+
 
 ## Indexing in R
 
@@ -489,7 +498,7 @@ starwars$name[starwars$obese == 1]
 
 ```
 
-In the first line of code above we specify the name of the variable we want in the column index in quotes, from the subsetted data.  In the second line of code we reference the variable and then in brackets we specify the conditional subset.  **NOTE:** While the values of both methods are the same, these methods are not equivelent.  The first method produces a dataframe with one column.  The second method produces a standalone vector.  This is an important distinction because a vector and a dataframe have different properties. This is similar to the issue with using `[[]]` vs. `[]`. 
+In the first line of code above we specify the name of the variable we want in the column index in quotes, from the subsetted data.  In the second line of code we reference the variable and then in brackets we specify the conditional subset.  **NOTE:** While the values of both methods are the same, these methods are not equivalent.  The first method produces a dataframe with one column.  The second method produces a standalone vector.  This is an important distinction because a vector and a dataframe have different properties. This is similar to the issue with using `[[]]` vs. `[]`. 
 
 
 ## Loops and apply functions
@@ -508,7 +517,7 @@ mean(starwars$bmi, na.rm = T)
 
 If you don't have many variables this might be an viable object. But if you have 50 variables, this would be very inefficient.  Instead you could use a loop.
 
-Loops let you use indices to cycle through a sequence of variables.  In this example we will use a `for` loop.  Ther are several types of loops that have pros and cons, but `for` loops are the most common. Here is an example of how to get the means of the three variables from above.
+Loops let you use indices to cycle through a sequence of variables.  In this example we will use a `for` loop.  There are several types of loops that have pros and cons, but `for` loops are the most common. Here is an example of how to get the means of the three variables from above.
 
 ```{r , echo = TRUE, exercise.setup = "obese"}
 # Create a smaller dataset with only the variables of interest
@@ -528,13 +537,13 @@ First we create a dataset with only the variables for which we want the means.
 
 Then we create and object where we can store the means.  In this case we are storing them in a numeric vector with 3 elements.
 
-Then we use our `for` loop to get the means and fill in the empty vector we just created.  The `i` object is initialized and we sepecify a sequence of numbers with the `1:3` code.  This says we want `i` to be a sequence of numbers from 1 to 3. When this code runs, the value `i` changes for each iteration from 1 to 3.  The code in the brackets is the meat of the loop.  The `out_means[[i]] <- mean(starwars3[[i]], na.rm = TRUE)` code assigns the mean of the ith variable from the `starwars3` dataframe to the ith element of the `out_means` vector we created before.  The resulting code is `out_means` is a numeric vector with three elements that contain the means for `height`, `mass` and `bmi`.  
+Then we use our `for` loop to get the means and fill in the empty vector we just created.  The `i` object is initialized and we specify a sequence of numbers with the `1:3` code.  This says we want `i` to be a sequence of numbers from 1 to 3. When this code runs, the value `i` changes for each iteration from 1 to 3.  The code in the brackets is the meat of the loop.  The `out_means[[i]] <- mean(starwars3[[i]], na.rm = TRUE)` code assigns the mean of the ith variable from the `starwars3` dataframe to the ith element of the `out_means` vector we created before.  The resulting code is `out_means` is a numeric vector with three elements that contain the means for `height`, `mass` and `bmi`.  
 
-Using `for` functions can be problematic because loops are prone to problems.  There are two big issues with loops (particularly the `for` loop).  The first is that they are slow.  If your dataframe is small (only a couple hundred rows or less), you won't notice a problem, but if you have several thousand rows or variables (or both) using a `for` loop could take a long time.  The other problem is, is that you can accidently create loops that don't end.  A faster, safer, and more efficient method is using an apply function.
+Using `for` functions can be problematic because loops are prone to problems.  There are two big issues with loops (particularly the `for` loop).  The first is that they are slow.  If your dataframe is small (only a couple hundred rows or less), you won't notice a problem, but if you have several thousand rows or variables (or both) using a `for` loop could take a long time.  The other problem is, is that you can accidentally create loops that don't end.  A faster, safer, and more efficient method is using an apply function.
 
 ### Apply functions
 
-Apply functions are base functions, built in to **R** that let you apply a function across multiple objects.  They are safer than `for` loops because you are less likely to run into a loop that doesn't end and they are faster because it uses base **R** code instead user specified code.  Let's use the same example from above but with an apply function. Here we will use `lapply()` fucntion. It is one of several apply functions that are available.
+Apply functions are base functions, built in to **R** that let you apply a function across multiple objects.  They are safer than `for` loops because you are less likely to run into a loop that doesn't end and they are faster because it uses base **R** code instead user specified code.  Let's use the same example from above but with an apply function. Here we will use `lapply()` function. It is one of several apply functions that are available.
 
 ```{r, echo = TRUE, exercise.setup = "obese"}
 out_means2 <- lapply(starwars[, c("height", "mass", "bmi")], function(x) mean(x, na.rm = TRUE))
@@ -542,7 +551,7 @@ out_means2 <- lapply(starwars[, c("height", "mass", "bmi")], function(x) mean(x,
 out_means2
 ```
 
-The `lapply()` function here returns a list hence the "l" in lapply.  The first argument is the data.  When you supply a dataframe to `lapply()`, the function assumes you want to cycle through each variable.  Because of this, we subset the data to only include the three variables for which we want the means.  You can see this can be done directly in the first argument of the `lapply()` function.  The second argument in the function is the function that you want to be run on each variable.  Here we want to use the base **R** function.  If we didn't have missing data we could have written the code like this `lapply(starwars[, c("height", "mass", "bmi")], mean)`.  Since we do have missing data he have to tell the function we want to create our own function, with one argument `x`. Here `x` will be the data from the respective variable that the `lapply()` function is currently cycling through. Then we call the `mean()` function, specify `x` argument, then we use the `na.rm = TRUE` argument to tell the `mean()` function we have missing data and we want you to remove the missing data.  If we didn't do this, we would get an error.  
+The `lapply()` function here returns a list hence the "l" in lapply.  The first argument is the data.  When you supply a dataframe to `lapply()`, the function assumes you want to cycle through each variable.  Because of this, we subset the data to only include the three variables for which we want the means.  You can see this can be done directly in the first argument of the `lapply()` function.  The second argument in the function is the function that you want to be run on each variable.  Here we want to use the base **R** function.  If we didn't have missing data we could have written the code like this `lapply(starwars[, c("height", "mass", "bmi")], mean)`.  Since we do have missing data we have to tell the function we want to create our own function, with one argument `x`. Here `x` will be the data from the respective variable that the `lapply()` function is currently cycling through. Then we call the `mean()` function, specify `x` argument, then we use the `na.rm = TRUE` argument to tell the `mean()` function we have missing data and we want you to remove the missing data.  If we didn't do this, we would get an error.  
 
 For the returned object, each element in the list is a named number value.  This is nice because now we know which mean is associated with which variable.  If we wanted to, we could coerce the list that is returned by `lapply()` into a dataframe by wrapping the `lapply()` statement in the `as.data.frame()` function like this
 
@@ -557,10 +566,9 @@ This returns a dataframe with three variables that are named after the variables
 
 In the space below, use the `lapply()` function to return a list with the frequencies of responses for the `skin_color`, `hair_color` and `eye_color` variables.  
 
-```{r color, exercise = T, exercise.eval = TRUE}
+```{r color, exercise = TRUE, exercise.eval = TRUE}
 
 ```
-
 
 ```{r color-solution}
 my_df <- lapply(starwars[, c("skin_color", "hair_color", "eye_color")], table)
@@ -574,7 +582,7 @@ In this tutorial, you learned the basics on how to use **R**.  As I mentioned be
 
 You will run into problems at some point writing your own code.  But don't get discouraged.  There are more resources online for solving coding problems in **R** than for any other stats software.  
 
-The easiets way to solve coding problems in **R** is to just Google them.  I would say over 90% of problems I've run in to, I've found solutions through Google.  Since you are just learning though, it might be helpful to have some go to resources other than Google.  Below are a list of resources that I've come across that I've found helpful.  I'll continue to update this list has I find resources.  
+The easiest way to solve coding problems in **R** is to just Google them.  I would say over 90% of problems I've run in to, I've found solutions through Google.  Since you are just learning though, it might be helpful to have some go to resources other than Google.  Below are a list of resources that I've come across that I've found helpful.  I'll continue to update this list as I find resources.  
 
 ### Links
 

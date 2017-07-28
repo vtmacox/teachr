@@ -597,6 +597,13 @@ https://www.datacamp.com/courses/free-introduction-to-r
 **R for Data Science**
 http://r4ds.had.co.nz/
 
+**Learn R through Intensive Practice**
+https://www.youtube.com/watch?v=p3i7Kz6C_-4&list=PLFAYD0dt5xCwDNFdrqeNoU9t-nhAWkbKe
+
+**R Exercises**
+http://www.r-exercises.com/start-here-to-learn-r/
+
+This website also has a list of over 140 courses on R (some you have to pay for)
 
 
 

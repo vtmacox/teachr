@@ -219,7 +219,7 @@ x
 [1] 4
 ```
 
-Each chunk is run sequentially and can have separate options for output such as caching, whether or not to evaluate syntax, or changing the size of figures
+Each chunk is run sequentially and can have separate options for output such as caching, whether or not to evaluate syntax, or changing the size of figures.
 
 
 R Markdown Resources
@@ -244,6 +244,22 @@ R Markdown Reproducible Reports
 - Use "params" to change frequently referenced elements/objects
 
 - Can setup a template
+
+## Putting it all together
+
+Learning **R** and **Rstudi0** is easier if we can practice.  Let's open **RStudio** and make a RMardown document and read in data from this file https://raw.githubusercontent.com/vtmacox/teachr/master/data.csv.  This is made up data that looks at cholesterol levels and several variables that are related to cholesterol including hours of exercise, servings of fruit and vegetables, age, and if a person was taking cholesterol medication.
+
+In the markdown document, create seperate chunks for the following code objectives:
+- Read in data
+- Assign proper data types to each variable
+- Recode the value `9` as `NA` for the `anxiety` variable
+- Get the descrptive statistics for each variable (except for the `id` variable)
+    + You choose which descriptives you want to show
+- Create two plots 
+    + A bar plot with `chol` on the y-axis and `med` on the x-axis (try giving proper labels to the axes)
+    + A scatter plot with `chol` on the y-axis and `age` on the x-axis (try adding a regression line to this plot)
+- Create a regression table using `chol` as the dependent variable and `exer`, `fv`, `age`, and `med` as the independent variables
+    + HINT: You will need the `lm()` function to do the analysis, the `summary()` to get the results, and the `knitr::kable()` to display the results. 
 
 ```{r quiz}
 quiz(

@@ -1,0 +1,122 @@
+---
+title: "RMarkdown"
+author: "Matthew Cox-Martin"
+date: "August 10, 2017"
+output: html_document
+---
+
+# This is the exercise from the "Advanced R" tutorial.  
+
+## Setup
+
+The code below sets up the R environment by loading the `tidyverse` package.
+
+```{r setup, echo=TRUE}
+options(scipen=999, digits = 5, width = 88)
+options(qwraps2_markup = "markdown")
+
+options(stringAsFactors = F)
+options(dplyr.print_max = 10)
+options(dplyr.pring_min = 5)
+
+knitr::opts_chunk$set(cache   = FALSE,
+               echo    = TRUE,
+               results = "hide",
+               message = FALSE,
+               warning = FALSE) 
+
+options(repos = c(CRAN = "https://cran.rstudio.com"))
+
+library(tidyverse)
+
+```
+
+## Import
+
+The code below imports the data using `readr::read_csv`.  The `csv` stands for "Comma Seperate Values".
+
+```{r import, echo=TRUE}
+
+data <- read_csv("https://raw.githubusercontent.com/vtmacox/teachr/master/data.csv", col_names = TRUE)
+
+```
+
+## Data Cleaning
+
+The code below assigns the `med` variable as a factor and provides labels.  It also recodes values of `9` as missing for the `anxiety` variable.
+
+```{r data_setup, echo=TRUE}
+data$med <- factor(data$med,
+                   levels = c(0,1),
+                   labels = c("Not on medication", "On Medication"))
+
+data$chol <- as.numeric(data$chol)
+
+data$anxiety <- if_else(data$anxiety == 9, NA_integer_, data$anxiety)
+
+# Or you could do it this way
+# data$anxiety <- ifelse(data$anxiety == 9, NA, data$anxiety)
+
+```
+
+## Descriptive Stats
+
+The code below shows two methods of creating descriptive stats.  The first uses `psych::describe`.  This prints out useful infromation such as mean, median, range, min, max, skew, and kurtosis.  However, if you have factor variables, it does not output frequences.  The second method uses functions from the `qwraps2` package which creates tables that can be displayed in markdown documents.  
+
+```{r desc_stats, echo=TRUE}
+
+psych::describe(data)
+
+tab1 <- 
+  with(data,
+       list( "Hours of Exercise" = qwraps2::tab_summary(exer),
+             "Servings of Fruits and Vegetables" = qwraps2::tab_summary(fv),
+             "Age" = qwraps2::tab_summary(age),
+             "Anxiety" = qwraps2::tab_summary(anxiety),
+             "Cholesterol Level" = qwraps2::tab_summary(chol),
+             "On Cholesterol Medication" = qwraps2::tab_summary(med))
+)
+
+```
+
+## Display descriptive stats
+
+```{r disp_stat, results="asis", echo=TRUE}
+
+outtab1 <- qwraps2::summary_table(data, tab1)
+outtab1
+
+```
+
+
+## Plots
+
+```{r plots, echo=TRUE}
+
+ggplot(data=data, aes(x = med, y= as.numeric(chol), fill = med)) +
+  stat_summary(fun.y = "mean", geom = "bar") + 
+  theme(axis.title.x = element_blank()) + 
+  ylab("Cholesterol (mg/dL)") +  guides(fill=FALSE) + 
+  ggtitle("Cholesterol Levels by Medication Status")
+
+ggplot(data=data, aes(x=age, y=chol)) +
+  geom_point(shape = 1) + 
+  ylab("Cholesterol (mg/dL)") + 
+  geom_smooth(method = lm, se = FALSE) +
+  ggtitle("Relationship between Cholesterol and Age") +
+  xlab("Age (years)")
+
+```
+```{r reg_mod, results="asis"}
+# Linear Regression
+mod1 <- lm(chol ~ exer + fv + age + anxiety + med, data = data)
+
+# Method 1 for output
+knitr::kable(summary(mod1)$coef, digits = 5)
+
+# Method 2 for output
+pander::pander(summary(mod1))
+
+# Method 3 for output
+xtable::print.xtable(xtable::xtable(summary(mod1)), type = "html")
+```

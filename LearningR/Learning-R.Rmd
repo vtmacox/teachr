@@ -610,6 +610,8 @@ http://www.statmethods.net/
 
 There is a companion books that contains other information, but most of the info is cotained on this website.
 
+**Intrdocutions to R Workshop**
+https://www.youtube.com/playlist?list=PLegh-m6sYwadxWLUwI-5Lnlmv8ZpK0Xur
 
 
 

@@ -117,6 +117,6 @@ knitr::kable(summary(mod1)$coef, digits = 5)
 # Method 2 for output
 pander::pander(summary(mod1))
 
-# Method 3 for output
+# Method 3 for output (may have to install xtable package)
 xtable::print.xtable(xtable::xtable(summary(mod1)), type = "html")
 ```

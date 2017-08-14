@@ -91,6 +91,8 @@ outtab1
 
 ## Plots
 
+Here we are using ggplot2.
+
 ```{r plots, echo=TRUE}
 
 ggplot(data=data, aes(x = med, y= as.numeric(chol), fill = med)) +
@@ -107,6 +109,18 @@ ggplot(data=data, aes(x=age, y=chol)) +
   xlab("Age (years)")
 
 ```
+
+## Regression Model
+
+```{r reg_mod, results="markdown"}
+# Linear Regression
+mod1 <- lm(chol ~ exer + fv + age + anxiety + med, data = data)
+
+summary(mod1)
+```
+
+## Other display options
+
 ```{r reg_mod, results="asis"}
 # Linear Regression
 mod1 <- lm(chol ~ exer + fv + age + anxiety + med, data = data)

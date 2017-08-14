@@ -613,5 +613,10 @@ There is a companion books that contains other information, but most of the info
 **Intrdocutions to R Workshop**
 https://www.youtube.com/playlist?list=PLegh-m6sYwadxWLUwI-5Lnlmv8ZpK0Xur
 
+**R Companion Handbook**
+http://rcompanion.org/handbook/  
+
+Good for biostats
+
 
 

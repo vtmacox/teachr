@@ -259,7 +259,10 @@ In the markdown document, create seperate chunks for the following code objectiv
     + A bar plot with `chol` on the y-axis and `med` on the x-axis (try giving proper labels to the axes)
     + A scatter plot with `chol` on the y-axis and `age` on the x-axis (try adding a regression line to this plot)
 - Create a regression table using `chol` as the dependent variable and `exer`, `fv`, `age`, and `med` as the independent variables
-    + HINT: You will need the `lm()` function to do the analysis, the `summary()` to get the results, and the `knitr::kable()` to display the results. 
+    + HINT: You will need the `lm()` function to do the analysis, the `summary()` to get the results.
+    + Try using the `knitr::kable()` function or the `pander::pander()` function to format and display the results.
+    
+I purposely didn't provide a lot of help here, because I want you to try to figure out how to do this yourself.  Use a combination of Googling and the `help()` function.  The idea isn't so much that you know how to do these tasks, but that you know how to learn how to do them.
 
 ```{r quiz}
 quiz(

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(exercise.checker = checkr::checkr_tutor)
 
 If you have completed the `Learning R` tutorial, then you are familiar with the basics of how to use **R**.  In this tutorial we will build on these skills and learn several advanced **R** coding techniques.  Specifically, this tutorial will focus on:
 
-- Using the `dplyr` package for advance data manipulation and data wrangleing
+- Using the `dplyr` package for advance data manipulation and data wrangling
 - Using the `ggoplot2` package to create graphs and figures
 - Using **RStudio** to create dynamic reproducible reports
 
@@ -24,9 +24,9 @@ If you have completed the `Learning R` tutorial, then you are familiar with the 
 
 In the last tutorial, we learned about **R** and how to use base **R** code and functions to read in and manipulate data. While this code is very useful, it can be somewhat difficult to use.  For example, when you reference variables in a dataframe, you have to first reference the dataframe, then use the `$` symbol, and then reference the variable.  This is cumbersome, especially when you have to reference multiple variables.  Additionally, R code is difficult to read.  Often functions are nested within one another and in order to understand what the code is trying to do, you have to read the inside most function first, then read each subsequent outer function.  
 
-Fortunately, there are a collection of packages that make **R** easier to read and easier to write.  Hadely Wickham, a dat scientist at **RStudio** and adjunct professor of Psychology at Rice University, has created a collection of packages for enhancing **R** code called `tidyverse` which is a package that installs and loads a series of packages.  We are going to focus on a few of these packages.
+Fortunately, there are a collection of packages that make **R** easier to read and easier to write.  Hadely Wickham, a data scientist at **RStudio** and adjunct professor of Psychology at Rice University, has created a collection of packages for enhancing **R** code called `tidyverse` which is a package that installs and loads a series of packages.  We are going to focus on a few of these packages.
 
-The first package we will be using is the `dplyr` package.  This package is useful for "data wrangeling" or manipulating data.  Let's start by installing and loading the `tidyverse` package which will install and load the `dplyr` package.
+The first package we will be using is the `dplyr` package.  This package is useful for "data wrangling" or manipulating data.  Let's start by installing and loading the `tidyverse` package which will install and load the `dplyr` package.
 
 ```{r load_package, exercise = TRUE}
 # Install and load the tidyverse package here
@@ -69,7 +69,7 @@ starwars <- starwars %>%
   
 ```
 
-In the code above we start with asigning a new value to the dataframe `starwars`.  Essentially we are just overwriting this dataframe with the same dataframe plus the new variable we will create.  To the right of the assign symbol, we reference the data that we will be using--in this case the `starwars` dataframe.  The `%>%` sybmol is part of the piping system.  It tells **R** that the code on the following lines uses whatever came before that symbol.  On the next line we use the `mutate()` function from `dplyr`.  This function creates variables.  In the function we specify the variable name we want to create and set it equal to the equation for calculating BMIs.  Notice that we don't have to reference the starwars dataframe at any point following the first reference, yet we still know what dataframe we are referencing from the first line of code.
+In the code above we start with signing a new value to the dataframe `starwars`.  Essentially we are just overwriting this dataframe with the same dataframe plus the new variable we will create.  To the right of the assign symbol, we reference the data that we will be using--in this case the `starwars` dataframe.  The `%>%` symbol is part of the piping system.  It tells **R** that the code on the following lines uses whatever came before that symbol.  On the next line we use the `mutate()` function from `dplyr`.  This function creates variables.  In the function we specify the variable name we want to create and set it equal to the equation for calculating BMIs.  Notice that we don't have to reference the starwars dataframe at any point following the first reference, yet we still know what dataframe we are referencing from the first line of code.
 
 While we didn't save a lot of time and space for creating one variable, if you were creating several variables, this would be a huge time saver.  
 
@@ -77,7 +77,7 @@ While we didn't save a lot of time and space for creating one variable, if you w
 
 Another nice thing about `dplyr` is that you can perform multiple operations/functions at the same time.  
 
-In the last tutorial we calculated the bmi of the participants and then we subset the data to only include obsese participants.  In the code below we will do this and we will limit the data to only the `height`, `mass`, and `bmi` variables.  
+In the last tutorial we calculated the bmi of the participants and then we subset the data to only include obese participants.  In the code below we will do this and we will limit the data to only the `height`, `mass`, and `bmi` variables.  
 
 ```{r bmi2, echo=TRUE}
 starwars2 <- starwars %>% 
@@ -90,7 +90,7 @@ head(starwars2)
 
 ```
 
-The code above builds on the previous code.  We have the same code except now we are creating another variable called `obese`.  This variable is created in the `mutate()` function but we seperate this variable from the previous with a `,`.  Once we have finished with the `mutate()` function we use the `%>%` to indicate we are using another function.  Next we use the `filter()` function from dplyr to say we want to limit our data to only obese people using the `obese` variable we just created.  The final function is `select()` and we list the variables we want in our final dataset. Notice that we don't have to have the variable names in quote for this function.  
+The code above builds on the previous code.  We have the same code except now we are creating another variable called `obese`.  This variable is created in the `mutate()` function but we separate this variable from the previous with a `,`.  Once we have finished with the `mutate()` function we use the `%>%` to indicate we are using another function.  Next we use the `filter()` function from dplyr to say we want to limit our data to only obese people using the `obese` variable we just created.  The final function is `select()` and we list the variables we want in our final dataset. Notice that we don't have to have the variable names in quote for this function.  
 
 You will notice that there is a `dplyr::` prefix to the `filter()` and `select()` functions.  This is a way to specify the package you want the function to come from.  In the last tutorial I mentioned that functions from different packages can have the same name.  This is the case for the `filter()` and `select()` functions.  By using `dplyr::` prefix we make sure that we are using functions from the `dplyr` package.  We could have done this with the `mutate()` function too but we didn't need to.  Additionally, using the `::` when calling a function means you don't have to load a package using `library()`.  This is useful if you aren't using a function often and don't want to have a ton of libraries loaded.
 
@@ -109,7 +109,7 @@ starwars %>%
 
 The second to last line of code uses the `lapply()` function, but the data argument of the function has the `.` symbol which means that we want to use the data that has been piped to this point.  The data is the filtered data with only the variables we selected. The last line turns the result of the previous line into a dataframe.  You can see that the piping allows us to clearly follow all the steps of how the data were manipulated in a linear fashion.
 
-Now lets have you try to use `dplyr` and piping.  Use piping and `dplry` functions to filter only participants with brown hair and output the frequencies for the gender, species, and homeworld for those characters.
+Now lets have you try to use `dplyr` and piping.  Use piping and `dplry` functions to filter only participants with brown hair and output the frequencies for the gender, species, and home world for those characters.
 
 ```{r exercise2, exercise = TRUE,  exercise.eval = TRUE}
 
@@ -137,7 +137,7 @@ Another thing that **R** is known for is creating publication quality plots, gra
 plot(cars, cex = 3, pch = ".")
 ```
 
-The plot above is a plot of two variables; `speed` along the x axis and `dist` alond the y axis.  You can see that the plot isn't very interesting.  **R** allows for advanced customization of plots.  We can change almost anything about the plot using code, but the code isn't very easy to use.  For example, the argument for changing the size of the points is `cex` and the argument for changing the shape is `pch`. Not very intuitive.  You'd have to look at the `help()` file for plot and even then, all of the customization functions aren't there.
+The plot above is a plot of two variables; `speed` along the x axis and `dist` along the y axis.  You can see that the plot isn't very interesting.  **R** allows for advanced customization of plots.  We can change almost anything about the plot using code, but the code isn't very easy to use.  For example, the argument for changing the size of the points is `cex` and the argument for changing the shape is `pch`. Not very intuitive.  You'd have to look at the `help()` file for plot and even then, all of the customization functions aren't there.
 
 Because arguments aren't intuitive, Hadely Wickham created one of the most popular packages for **R** called `ggplot2` which uses the grammar of graphics (hence gg).  It's so popular that if you use *RStuido* the package is already loaded.  The `ggplot2` package uses facets to build a plot.  
 
@@ -172,7 +172,7 @@ ggplot(data=dat, aes(x=time, y=total_bill, fill=time)) +
     guides(fill=FALSE)
 ```
 
-In the code above, we created a very simple dataframe using the `data.frame()` function.  The first plot is a very basic bar plot.  First we call the `ggplot()` function.  The first argument in the function is `dat` which is the dataframe from which we will be referencing variables.  The second argument is a call to the `aes()` function.  `aes` stands for aesthetics.  In this function we specify the variables for the `x` and `y` axes.  This is the first facet--the data.  We then use the `+` to indicate a second facet to our plot.  The `+` here serves a similar function as the `%>%` symbol in `dplyr`.  The only difference is we aren't piping, we are adding to previous commands.  The next facet is the `geom_bar()` function which indicates we want a barplot.  The argument `stat = "identity"` indicates we want to display the value of the data.  If we didn't use the argument, by default it would have used the frequences of the `x` variable which we don't want.  
+In the code above, we created a very simple dataframe using the `data.frame()` function.  The first plot is a very basic bar plot.  First we call the `ggplot()` function.  The first argument in the function is `dat` which is the dataframe from which we will be referencing variables.  The second argument is a call to the `aes()` function.  `aes` stands for aesthetics.  In this function we specify the variables for the `x` and `y` axes.  This is the first facet--the data.  We then use the `+` to indicate a second facet to our plot.  The `+` here serves a similar function as the `%>%` symbol in `dplyr`.  The only difference is we aren't piping, we are adding to previous commands.  The next facet is the `geom_bar()` function which indicates we want a barplot.  The argument `stat = "identity"` indicates we want to display the value of the data.  If we didn't use the argument, by default it would have used the frequencies of the `x` variable which we don't want.  
 
 The second plot is the same as the first except we are providing different colors for the different values of `time` by adding the `fill` argument to the `aes` function.  Because we specified that `time` as a factor, `ggplot2` while auto assign colors to each level of the factor. Also, because we specified the `fill` argument, `ggplot2` created a key showing what each color represents.
 
@@ -251,11 +251,11 @@ R Markdown Reproducible Reports
 
 Learning **R** and **Rstudi0** is easier if we can practice.  Let's open **RStudio** and make a RMardown document and read in data from this file https://raw.githubusercontent.com/vtmacox/teachr/master/data.csv.  This is made up data that looks at cholesterol levels and several variables that are related to cholesterol including hours of exercise, servings of fruit and vegetables, age, and if a person was taking cholesterol medication.
 
-In the markdown document, create seperate chunks for the following code objectives:
+In the markdown document, create separate chunks for the following code objectives:
 - Read in data
 - Assign proper data types to each variable
 - Recode the value `9` as `NA` for the `anxiety` variable
-- Get the descrptive statistics for each variable (except for the `id` variable)
+- Get the descriptive statistics for each variable (except for the `id` variable)
     + You choose which descriptives you want to show
 - Create two plots 
     + A bar plot with `chol` on the y-axis and `med` on the x-axis (try giving proper labels to the axes)

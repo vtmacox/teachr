@@ -520,7 +520,7 @@ mean(starwars$bmi, na.rm = T)
 
 If you don't have many variables this might be an viable object. But if you have 50 variables, this would be very inefficient.  Instead you could use a loop.
 
-Loops let you use indices to cycle through a sequence of variables.  In this example we will use a `for` loop.  There are several types of loops that have pros and cons, but `for` loops are the most common. Here is an example of how to get the means of the three variables from above.
+Loops let you use indices to cycle through a sequence of variables.  In this example we will use a `for` loop.  There are several types of loops and each have pros and cons, but `for` loops are the most common. Here is an example of how to get the means of the three variables from above.
 
 ```{r , echo = TRUE, exercise.setup = "obese"}
 # Create a smaller dataset with only the variables of interest

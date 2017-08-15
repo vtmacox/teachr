@@ -392,7 +392,7 @@ You can see that there are now 7 variables in the dataframe with the last variab
 Let's look at a different database.  We are going to use the `starwars` data contained in the `dplyr` package we loaded before.  This dataframe contains a height variable and a mass variable.  Let's calculate the BMI for each person and store it as a variable called `bmi` in the starwars database.
 
 ```{r bmi, echo = TRUE}
-starwars$bmi <- starwars$mass/(starwars$height/100)^2
+starwars$bmi <- starwars$mass / (starwars$height / 100)^2
 
 starwars$bmi
 ```
@@ -403,7 +403,7 @@ starwars$bmi <- starwars$mass/(starwars$height/100)^2
 starwars$bmi
 ```
 
-In the code above we called the `mass` and `height` variables from the dataframe and used those in the equation for BMI to calculate BMI for each person.  You'll notice that we had to divide the height by 100 because height was in centimeters. Several of the values of our newly created `bmi` variable have the value `NA`.  This is because either or both the `mass` or `height` data was missing for that person.  `NA` is the value **R** uses for missing data.  Missing data is itself its own data type with its own properties.  
+In the code above we called the `mass` and `height` variables from the dataframe and used those in the equation for BMI to calculate BMI for each person.  The `/` is division and `^` eponetiates the value preceding the symbol to the value after the symbol.  You'll notice that we had to divide the height by 100 because height was in centimeters. Several of the values of our newly created `bmi` variable have the value `NA`.  This is because either or both the `mass` or `height` data was missing for that person.  `NA` is the value **R** uses for missing data.  Missing data is itself its own data type with its own properties.  
 
 ### Missing Data
 
@@ -503,7 +503,7 @@ starwars$name[starwars$obese == 1]
 
 ```
 
-In the first line of code above we specify the name of the variable we want in the column index in quotes, from the subsetted data.  In the second line of code we reference the variable and then in brackets we specify the conditional subset.  **NOTE:** While the values of both methods are the same, these methods are not equivalent.  The first method produces a dataframe with one column.  The second method produces a standalone vector.  This is an important distinction because a vector and a dataframe have different properties. This is similar to the issue with using `[[]]` vs. `[]`. 
+In the first line of code above we specify the name of the variable we want in the column index in quotes, from the subsetted data.  In the second line of code we reference the variable and then in brackets we specify the conditional subset.  **NOTE:** While the values of both methods are the same, these methods are not equivalent.  The first method produces a dataframe with one column.  The second method produces a standalone vector.  This is an important distinction because a vector and a dataframe have different properties. This is similar to the issue with using `[]` vs. `[[]]`. 
 
 
 ## Loops and apply functions

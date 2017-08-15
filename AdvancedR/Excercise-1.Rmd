@@ -27,7 +27,28 @@ knitr::opts_chunk$set(cache   = FALSE,
 
 options(repos = c(CRAN = "https://cran.rstudio.com"))
 
-library(tidyverse)
+library(tidyverse)  
+
+pvalr <- function(pvals, sig.limit = .001, digits = 3, html = FALSE) {
+
+  roundr <- function(x, digits = 1) {
+    res <- sprintf(paste0('%.', digits, 'f'), x)
+    zzz <- paste0('0.', paste(rep('0', digits), collapse = ''))
+    res[res == paste0('-', zzz)] <- zzz
+    res
+  }
+
+  sapply(pvals, function(x, sig.limit) {
+    if (x < sig.limit)
+      if (html)
+        return(sprintf('&lt; %s', format(sig.limit))) else
+          return(sprintf('< %s', format(sig.limit)))
+    if (x > .1)
+      return(roundr(x, digits = 2)) else
+        return(roundr(x, digits = digits))
+  }, sig.limit = sig.limit)
+}
+
 
 ```
 
@@ -116,18 +137,27 @@ ggplot(data=data, aes(x=age, y=chol)) +
 # Linear Regression
 mod1 <- lm(chol ~ exer + fv + age + anxiety + med, data = data)
 
-summary(mod1)
+sum_mod1 <- summary(mod1)
+
+sum_mod1
+
+#sum_mod1$coefficients[, 4] <- pvalr(sum_mod1$coefficients[, 4], digits = 3)
+#sum_mod1$coefficients[, 4] <- format.pval(sum_mod1$coefficients[, 4], digits = 3)
+
 ```
 
 ## Other display options
 
-```{r reg_mod, results="asis"}
+```{r reg_display, results="asis"}
 # Method 1 for output
-knitr::kable(summary(mod1)$coef, digits = 5)
+knitr::kable(sum_mod1$coef, digits = 5)
 
 # Method 2 for output
-pander::pander(summary(mod1))
+pander::pander(sum_mod1, digits = 5, round = 5)
 
-# Method 3 for output (may have to install xtable package)
-xtable::print.xtable(xtable::xtable(summary(mod1)), type = "html")
+# Method 3 for output (first install xtable package)
+xtable::print.xtable(xtable::xtable(sum_mod1), type = "html")
+
+# Method 4 for output
+stargazer::stargazer(mod1, type = "html")
 ```

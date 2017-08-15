@@ -24,10 +24,10 @@ Understanding how data are read in and manipulated can help you be a better rese
 
 In this tutorial we will focus on:
 
-    - How to create databases
-    - How new variables are created
-    - Knowing which variables are which type
-    - Knowing which analyses you can run based on the type of data you have
+- How to create databases
+- How new variables are created
+- Knowing which variables are which type
+- Knowing which analyses you can run based on the type of data you have
 
 ### Data analysis programs
 
@@ -41,7 +41,7 @@ http://r4stats.com/articles/popularity/
 
 **R** is an open source, object oriented "language and environment for statistical computing and graphics".
 
-www.r-project.org
+www.r-project.org 
 
 **R** is popular because:
 - It's free
@@ -51,11 +51,11 @@ www.r-project.org
 ### Parts of the R graphic user interface
 
 - Console 
-    - Where code is executed
+    + Where code is executed
 - Editor
-    - Where we write our code in what are called "scripts"
+    + Where we write our code in what are called "scripts"
 - Graphics Device
-    - Where our plots and other graphics are displayed
+    + Where our plots and other graphics are displayed
 
 
 ## **RStudio**
@@ -66,10 +66,10 @@ The basic **R** GUI is not optimized for users
 
 Basic enhancements from R studio include:
 
-  - Easier navigation of multiple scripts, plots, packages, and global environment
-  - Code completion
-  - Color coding of code
-  - Easier debugging
+- Easier navigation of multiple scripts, plots, packages, and global environment
+- Code completion
+- Color coding of code
+- Easier debugging
   
 The most useful elements of R studio include:
 
@@ -103,7 +103,7 @@ We will be using R within the **RStudio** environment in order to make things ea
 
 ## Programming in R
 
-In this section we will talk about why data analysts use code to analyze data instead of point and click methods
+In this section we will talk about why data analysts use code to analyze data instead of point and click methods.
 
 ### Please don't make me code
 
@@ -125,7 +125,7 @@ There is a steep learning curve to learning how to code in **R**.  Learning to c
 
 ## Objects in **R**
 
-As mentioned before **R** is an object-oriented programming language in addition to being a statistical software.  In this section we will learn how to create and manipulate objects in **R**.  This will lay the foundation for understanding how **R** treats data.
+As mentioned before **R** is an object-oriented programming language in addition to being a statistical software.  In this section we will learn how to create and manipulate objects in **R**.  This will lay the foundation for understanding how **R** treats data.  Objects in **R** serve a similar function as a complicated filing system. Some objects are filing cabinets while others are folders. 
 
 ### Objects example
 
@@ -193,7 +193,7 @@ obj_types <- data.frame(data_type = c("Continuous", "Categorical", "Count", "Tex
 knitr::kable(obj_types)
 ```
 
-An object that contains multiple data points of the same type is called a vector.  Our object `numbers` above would be considered a numeric vector and the `char_ob2` object would be considered a character vector. An individual datum in a vector is called an element.  So the first element in our `numbers` object is 1.  We can tell **R** to pull specific element within an object why specifying the elements position in the object. For example:
+An object that contains multiple data points of the same type is called a vector.  Our object `numbers` above would be considered a numeric vector and the `char_ob2` object would be considered a character vector. An individual datum in a vector is called an element.  So the first element in our `numbers` object is 1.  We can tell **R** to pull specific element within an object by specifying the elements position in the object. For example:
 
 ```{r, echo=TRUE, exercise.setup = "obj"}
 numbers[3]
@@ -213,7 +213,7 @@ In the code below, print the output for the 2nd element in the object `char_ob2`
 char_ob2[2]
 ```
 
-When we combine multiple numeric vectors of the same length together we have a matrix.  Understanding matrices is important to understanding how to manipulate
+When we combine multiple numeric vectors of the same length together we have a matrix.  Understanding matrices is important to understanding how to manipulate data sets.
 
 Although **R** will let you store different data types in the same object, this generally isn't a good idea.  If you have multiple types of data that you want to store in the same object, use a `dataframe` or a `list`.  
 
@@ -237,7 +237,7 @@ quiz(
 
 ## Functions in **R**
 
-Now that we know about objects and dataframes, we can finally get to real data.  In this next section we will be importing data and manipulating it.  We will be using `functions` to do this so let's learn a little about functions
+Now that we know about objects and dataframes, we can finally get to real data.  In this next section we will be importing data and manipulating it.  We will be using `functions` to do this so let's learn a little about functions.
 
 ### What is a function
 
@@ -259,7 +259,7 @@ In the example above you can see we are assigning the function to the name `add`
 
 When we call the `add()` function we specified the argument values.  This is generally good practice, but isn't necessary.  You would get the same results if you used the code `add(3, 1)`.  If you don't explicitly specify the arguments, **R** assumes you are specifying them in the order they are specified in the function call.  In this example we specified x first, then y.
 
-In general, you want to create a function when you are using the same set of code over and over again.  Using a function saves space an time.  For example, if you needed to recode or reformat data, using a function might save you a lot of time.  
+In general, you want to create a function when you are using the same set of code over and over again.  Using a function saves space and time.  For example, if you needed to recode or reformat data, using a function might save you a lot of time.  
 
 ### Packages in **R**
 
@@ -286,7 +286,7 @@ Note the use of quotes around the package name for the `install.packages()` func
 
 Packages only need to be installed once, but they need to be loaded via `library()` every time your restart **R**.  Depending on how popular a package is, packages can be updated on a regular basis.  In **RStudio**, you can update installed packages by clicking on the "Tools" tab at the top and then clicking "Check for Package Updates".
 
-NOTE: Some packages have the same function names as other already installed functions.  When you load a package that has the same function name as some already installed packages, **R** prioritizes the most recently installed packages.  For example if we have a package already loaded that uses a function called `add()` then we loaded a new package that also has a function called `add()` (but this function does something different). When you call the function it will use the function from the most recently loaded package.  Because of this, you don't want to load packages you aren't using.  Later, we'll talk about ways around this.
+NOTE: Some packages have the same function names as other already installed functions.  When you load a package that has the same function name as some already installed packages, **R** prioritizes the most recently installed packages.  For example, say we have a package already loaded that uses a function called `add()` then we loaded a new package that also has a function called `add()` (but this function does something different). When you call the function it will use the function from the most recently loaded package.  Because of this, you don't want to load packages you aren't using.  Later, we'll talk about ways around this problem.
 
 
 ## Importing data with functions
@@ -403,7 +403,7 @@ starwars$bmi <- starwars$mass/(starwars$height/100)^2
 starwars$bmi
 ```
 
-In the code above we called the `mass` and `height` variables from the dataframe and used those in the equation for BMI to calculate BMI for each person.  The `/` is division and `^` eponetiates the value preceding the symbol to the value after the symbol.  You'll notice that we had to divide the height by 100 because height was in centimeters. Several of the values of our newly created `bmi` variable have the value `NA`.  This is because either or both the `mass` or `height` data was missing for that person.  `NA` is the value **R** uses for missing data.  Missing data is itself its own data type with its own properties.  
+In the code above we called the `mass` and `height` variables from the dataframe and used those in the equation for BMI to calculate BMI for each person.  The `/` is division and `^` exponentiates the value preceding the symbol to the value after the symbol.  You'll notice that we had to divide the height by 100 because height was in centimeters. Several of the values of our newly created `bmi` variable have the value `NA`.  This is because either or both the `mass` or `height` data was missing for that person.  `NA` is the value **R** uses for missing data.  Missing data is itself its own data type with its own properties.  
 
 ### Missing Data
 
@@ -419,7 +419,7 @@ This function on its own isn't useful since it just is a vector of `TRUE` or `FA
 table(is.na(starwars$bmi))
 ```
 
-This is much more useful.  We can see that we have 28 missing values for our `bmi` variable.  The `table()` function tells us the frequency of the different responses for a variable.  This function is useful when you have categorical data or data with only a few responses.  We wouldn't want to use this on the `height` variable because it would output how many time each height is recorded in the dataframe.  
+This is much more useful.  We can see that we have 28 missing values for our `bmi` variable.  The `table()` function tells us the frequency of the different responses for a variable.  This function is useful when you have categorical data or data with only a few responses.  We wouldn't want to use this on the `height` variable because it would output how many times each height is recorded in the dataframe.  
 
 ### Conditional formating
 
@@ -475,9 +475,7 @@ starwars[1]
 
 ```
 
-The first line of code uses double square brackets and returns the first variable in the dataframe as a vector
-
-The second line of code uses single square brackets and returns a dataframe with just the first variable.  In both instances, the `1` indicates the column/variable number of the dataframe.
+The first line of code uses double square brackets and returns the first variable in the dataframe as a vector. The second line of code uses single square brackets and returns a dataframe with just the first variable.  In both instances, the `1` indicates the column/variable number of the dataframe.
 
 ### Subsetting Data
 Indexing is useful for subsetting your data.  Say you only wanted a dataframe of people who are obese.
@@ -503,7 +501,7 @@ starwars$name[starwars$obese == 1]
 
 ```
 
-In the first line of code above we specify the name of the variable we want in the column index in quotes, from the subsetted data.  In the second line of code we reference the variable and then in brackets we specify the conditional subset.  **NOTE:** While the values of both methods are the same, these methods are not equivalent.  The first method produces a dataframe with one column.  The second method produces a standalone vector.  This is an important distinction because a vector and a dataframe have different properties. This is similar to the issue with using `[]` vs. `[[]]`. 
+In the first line of code above we specify the name of the variable we want in the column index in quotes, from the subsetted data.  In the second line of code we reference the variable and then in brackets we specify the conditional subset.  **NOTE:** While the values of both methods are the same, these methods are not equivalent.  The first method produces a dataframe with one column.  The second method produces a standalone vector.  This is an important distinction because a vector and a dataframe have different properties. This is similar to the issue with using `[]` vs. `[[]]`.  The issue is that what you can do to a vector with all the same data type is different than what you can do to a dataframe with one variable. 
 
 
 ## Loops and apply functions

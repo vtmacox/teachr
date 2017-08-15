@@ -55,7 +55,7 @@ In the space below, create the BMI variable the way you were taught in the last 
 
 
 ```{r bmi1-solution}
-starwars$bmi <- starwars$mass/(starwars$height/100)^2
+starwars$bmi <- starwars$mass / (starwars$height / 100)^2
 
 ```
 
@@ -65,7 +65,7 @@ In the code you created, we have to make a reference to the `starwars` dataframe
 
 ```{r, echo=TRUE}
 starwars <- starwars %>% 
-  mutate(bmi = mass/(height/100)^2)
+  mutate(bmi = mass / (height / 100)^2)
   
 ```
 

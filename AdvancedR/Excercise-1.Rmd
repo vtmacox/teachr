@@ -122,9 +122,6 @@ summary(mod1)
 ## Other display options
 
 ```{r reg_mod, results="asis"}
-# Linear Regression
-mod1 <- lm(chol ~ exer + fv + age + anxiety + med, data = data)
-
 # Method 1 for output
 knitr::kable(summary(mod1)$coef, digits = 5)
 

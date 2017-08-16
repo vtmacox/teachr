@@ -44,6 +44,7 @@ http://r4stats.com/articles/popularity/
 www.r-project.org 
 
 **R** is popular because:
+
 - It's free
 - It has a broad support network where users can ask and answer questions
 - It is highly adaptable through the use of packages
@@ -86,8 +87,8 @@ The most useful elements of R studio include:
 - Go to www.r-project.org and click "download R"
 - Select a server from which to download **R** (try https://cloud.r-project.org/)
 - Select the link for the operating system you are using
-    - If you're using Windows click "install R for the first time" and the click the link that begins "Download..."
-    - For Mac users, click on the first link in the left column under "Files:"
+    + If you're using Windows click "install R for the first time" and the click the link that begins "Download..."
+    + For Mac users, click on the first link in the left column under "Files:"
     
 ## Install RStudio
 

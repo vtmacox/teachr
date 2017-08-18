@@ -194,11 +194,11 @@ http://r4ds.had.co.nz/data-visualisation.html
 
 Up to this point we have only been using **RStudio** passively.  Essentially, we have just been running **R** within the **RStuido** environment.  **RStudio** has a whole host of features that make it useful for creating scholarly work.  
 
-Up to this point we have been writing code in **R** scripts which are saved as .R files.  These are very basic text files.  **RStudio** has a different type file that you can use to write code called a .Rmd file. This file is an R Markdown file.  This file uses a package called `rmarkdown`.  
+Up to this point we have been writing code in **R** scripts which are saved as .R files.  These are very basic text files.  **RStudio** has a different type file that you can use to write code called a .Rmd file. This file is an R Markdown file and it uses a package called `rmarkdown`.  
 
 R Markdown is an authoring format for the creation of dynamic documents. Dynamic documents combine simple markdown text with code and output to create documents that are completely reproducible. Users can annotate code and output and have both displayed in a single document sequentially.  Markdown text and **R** code are written in a .Rmd file which is opened by clicking File -> New File -> R Markdown.
 
-After you write your code, to create the output document, click "Knit HTML" or select the output style you want.  Each time the document is produced the syntax is compiled.  Documents cannot be produced when there are syntax errors.  Output formats include PDF, HTML, MS Word, and several others.  
+After you write your code in the .Rmd file, click "Knit HTML" or select the output style you want to create the output document.  Each time the document is produced the syntax is compiled.  Documents cannot be produced when there are syntax errors.  Output formats include PDF, HTML, MS Word, and several others.  
 
 Recent updates to R Markdown improve its functionality.  Previously, if you just wanted to run the code, you had to run each section of syntax (called a chunk) separately.  New options allow the user to run all the code ignoring markdown text or just a specific chunk with the click of a button.
 
@@ -222,8 +222,7 @@ x
 Each chunk is run sequentially and can have separate options for output such as caching, whether or not to evaluate syntax, or changing the size of figures.
 
 
-R Markdown Resources
-========================================================
+## R Markdown Resources
 
 [Reference Guide] (https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
@@ -231,8 +230,7 @@ R Markdown Resources
 
 http://www.stat.cmu.edu/~cshalizi/rmarkdown/
 
-R Markdown Reproducible Reports
-========================================================
+## R Markdown Reproducible Reports
 
 - Can use R Markdown to create:
   - Statistical reports

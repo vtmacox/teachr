@@ -32,3 +32,9 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 .Rproj.user
+
+# Shiny connect files
+/rsconnect/
+
+# Exclude .html files
+*.html

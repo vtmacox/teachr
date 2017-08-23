@@ -617,5 +617,10 @@ http://rcompanion.org/handbook/
 
 Good for biostats
 
+**Swirl**
+"swirl" pacakge
+Several courses that teach you how to learn **R** in **R**
 
+**Tutorial for learning R**
+https://www.r-bloggers.com/how-to-learn-r-2/
 

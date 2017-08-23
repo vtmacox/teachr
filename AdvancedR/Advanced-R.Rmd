@@ -109,7 +109,12 @@ starwars %>%
 
 The second to last line of code uses the `lapply()` function, but the data argument of the function has the `.` symbol which means that we want to use the data that has been piped to this point.  The data is the filtered data with only the variables we selected. The last line turns the result of the previous line into a dataframe.  You can see that the piping allows us to clearly follow all the steps of how the data were manipulated in a linear fashion.
 
-Now lets have you try to use `dplyr` and piping.  Use piping and `dplry` functions to filter only participants with brown hair and output the frequencies for the gender, species, and home world for those characters.
+We actually could have created the same dataframe using functions in `dplyr`.
+
+
+### Practticing with `dplyr`
+
+Now lets have you try to use `dplyr` and piping.  Use piping and `dplyr` functions to filter only participants with brown hair and output the frequencies for the gender, species, and home world for those characters.
 
 ```{r exercise2, exercise = TRUE,  exercise.eval = TRUE}
 
@@ -126,7 +131,13 @@ starwars %>%
 ```
 
 
-The `dplyr` package has a number of very helpful vignettes that will show you have to use the functions that we've gone over and several other ones we haven't.
+### Resources for `dplyr`
+
+The `dplyr` package has a number of very helpful vignettes that will show you how to use the functions that we've gone over and several other ones we haven't.
+
+Also check out the cheatsheet for `dplyr` and `tidyr`
+
+[dplyr Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
 
 ## Plotting with `ggplot2`
@@ -196,6 +207,8 @@ Up to this point we have only been using **RStudio** passively.  Essentially, we
 
 Up to this point we have been writing code in **R** scripts which are saved as .R files.  These are very basic text files.  **RStudio** has a different type file that you can use to write code called a .Rmd file. This file is an R Markdown file and it uses a package called `rmarkdown`.  
 
+### R Markdown
+
 R Markdown is an authoring format for the creation of dynamic documents. Dynamic documents combine simple markdown text with code and output to create documents that are completely reproducible. Users can annotate code and output and have both displayed in a single document sequentially.  Markdown text and **R** code are written in a .Rmd file which is opened by clicking File -> New File -> R Markdown.
 
 After you write your code in the .Rmd file, click "Knit HTML" or select the output style you want to create the output document.  Each time the document is produced the syntax is compiled.  Documents cannot be produced when there are syntax errors.  Output formats include PDF, HTML, MS Word, and several others.  
@@ -224,9 +237,9 @@ Each chunk is run sequentially and can have separate options for output such as 
 
 ## R Markdown Resources
 
-[Reference Guide] (https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+[Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
-[Cheatsheet] (https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+[Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 
 http://www.stat.cmu.edu/~cshalizi/rmarkdown/
 
@@ -261,6 +274,8 @@ In the markdown document, create separate chunks for the following code objectiv
 - Create a regression table using `chol` as the dependent variable and `exer`, `fv`, `age`, and `med` as the independent variables
     + HINT: You will need the `lm()` function to do the analysis, the `summary()` to get the results.
     + Try using the `knitr::kable()` function or the `pander::pander()` function to format and display the results.
+
+When you finish your code, create an HTML or Word document with the results.
     
 I purposely didn't provide a lot of help here, because I want you to try to figure out how to do this yourself.  Use a combination of Googling and the `help()` function.  The idea isn't so much that you know how to do these tasks, but that you know how to learn how to do them.
 

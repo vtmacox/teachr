@@ -109,10 +109,48 @@ starwars %>%
 
 The second to last line of code uses the `lapply()` function, but the data argument of the function has the `.` symbol which means that we want to use the data that has been piped to this point.  The data is the filtered data with only the variables we selected. The last line turns the result of the previous line into a dataframe.  You can see that the piping allows us to clearly follow all the steps of how the data were manipulated in a linear fashion.
 
-We actually could have created the same dataframe using functions in `dplyr`.
+We actually could have created the same dataframe using functions in `dplyr`.  We could use the the `summarise()` function, but we would have to create variable names for each variable we want.  Instead we could use the `summarise_all()` function which will apply the summary functions we select to all the variables.
+
+```{r, echo=TRUE}
+starwars %>% 
+  mutate(bmi = mass/(height/100)^2,
+         obese = if_else(bmi >= 30, 1, 0)) %>% 
+  dplyr::filter(obese == 1) %>% 
+  dplyr::select(height, mass, bmi) %>% 
+  summarise_all(., funs(mean(., na.rm = T)))
+
+```
 
 
-### Practticing with `dplyr`
+The first argument of `summarise_all()` is the data, and the second argument is the function we want applied to all the variables.  In this case, it is `mean()`.  We also passed the `na.rm = T` argument in the `mean()` function to deal with the missing data.
+
+We could have also passed a number of other functions if we wanted (e.g., `sd()`, `median()`, etc.), and `dplyr` would have just kept adding variables to the dataframe and added a suffix to the variable names with the function that was used, such as `height_mean`.  
+
+I'll show you how to create a table of descriptive stats using `dplyr`.  **NOTE:** While the code itself is very simple, how it is used is quite complicated.  I just want to show that it can be done, but I don't expect you to know how to do this. 
+
+```{r, echo=TRUE}
+starwars %>% 
+  mutate(bmi = mass/(height/100)^2,
+         obese = if_else(bmi >= 30, 1, 0)) %>% 
+  dplyr::filter(obese == 1) %>% 
+  dplyr::select(height, mass, bmi) %>% 
+  dplyr::summarise_all(funs(mean, median, min, max, 
+                            range = diff(range(., na.rm = T)), 
+                            missing = sum(is.na(.)),
+                            n = sum(!is.na(.))),
+                       na.rm = T) %>% 
+  tidyr::gather(stat, val) %>% 
+  tidyr::separate(stat, into = c("var", "stat"), sep = "_") %>% 
+  tidyr::spread(stat, val)
+
+```
+  
+In the code above you can see we use the `summarise_all()` function, but this time we include a lot more arguments.  You can see that we include the `max()`, `mean()`,` median()`, and` min()` functions.  We also create several variables using several functions.  W create `missing` by summing all of the TRUE values of `is.na()`.  We create `range` by using the `diff()` function and the range() function.  Lastly, we create `n` by summing `!is.na()`.  When there is an `!` in front of a function the returns `TRUE` or `FALSE` values, the opposite values are returned.  Essentially `!` is asking when the values are NOT `TRUE`.  The resulting object is a dataframe with 1 row and 21 columns.  The columns are the variables with the suffix representing the stat that was used.  This isn't very efficient.  Instead we want 1 row for each variable and 1 column for each statistic.  Since we have 3 variables and 7 stats, we want a 3 X 7 dataframe.  
+
+The `gather()` function turns the 1 X 21 dataframe into a 21 X 2 dataframe with the variable/stat indicator as one variable called `stat` and the value of that statistic for that variable as the second variable called `val`.  The `separate()` function splits the new `stat` variable into 2 variables using the `_` as the place where the split occurs.  This gives us a 21 X 3 data frame with one variable called `var` which is the variable from the original dataframe, a variable called `stat` which is the statistic that was performed on the variable, and a variable `val` which is the value of that statistic on that variable.  The `spread()` function is the compliment of `gather()`.  It creates a new variable for each unique value of `stat` and uses `var` implictly as grouping factor to assign the proper value to each statistic at each variable. The function knew to use `var` as the grouping variable because there are only 3 variables in the dataframe and we specified  2 of them for other arguments, so it assumes any non-assigned variables are grouping variables.  This results in a 3 X 7 dataframe where the rows represent the variables and the columns represent the statistics.  The elements are the values of each statistic for each variable.  
+
+
+### Practicing with `dplyr`
 
 Now lets have you try to use `dplyr` and piping.  Use piping and `dplyr` functions to filter only participants with brown hair and output the frequencies for the gender, species, and home world for those characters.
 
@@ -190,6 +228,22 @@ The second plot is the same as the first except we are providing different color
 The third plot adds a border around each bar by specifying the `color` argument in the `geom_bar()` function.  
 
 The fourth plot removes the key by adding the `guide()` function and assigning the `fill` argument to false.  Essentially this overrides the default behavior of automatically creating a key when we specified the `fill` argument in the `aes()` function.  
+
+###Practicing `ggplot2`
+
+Using the space below create a scatter plot using `ggplot2` with data from the starwars dataframe. Put `height` on the y-axis and `mass` on the x-ais.  HINT: Google "scatter plot ggplot2"
+
+```{r exercise2, exercise = TRUE,  exercise.eval = TRUE}
+
+
+```
+
+
+```{r exercise2-solution}
+ggplot(data = starwars, aes(x = mass, y = height)) +
+  geom_point(color = "red")
+
+```
 
 ***
 

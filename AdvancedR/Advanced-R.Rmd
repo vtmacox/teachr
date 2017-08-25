@@ -145,10 +145,11 @@ starwars %>%
 
 ```
   
-In the code above you can see we use the `summarise_all()` function, but this time we include a lot more arguments.  You can see that we include the `max()`, `mean()`,` median()`, and` min()` functions.  We also create several variables using several functions.  W create `missing` by summing all of the TRUE values of `is.na()`.  We create `range` by using the `diff()` function and the range() function.  Lastly, we create `n` by summing `!is.na()`.  When there is an `!` in front of a function the returns `TRUE` or `FALSE` values, the opposite values are returned.  Essentially `!` is asking when the values are NOT `TRUE`.  The resulting object is a dataframe with 1 row and 21 columns.  The columns are the variables with the suffix representing the stat that was used.  This isn't very efficient.  Instead we want 1 row for each variable and 1 column for each statistic.  Since we have 3 variables and 7 stats, we want a 3 X 7 dataframe.  
+In the code above you can see we use the `summarise_all()` function, but this time we include a lot more arguments.  You can see that we include the `max()`, `mean()`,` median()`, and` min()` functions.  We also create several variables using several functions.  W create `missing` by summing all of the TRUE values of `is.na()`.  We create `range` by using the `diff()` function and the range() function.  Lastly, we create `n` by summing `!is.na()`.  When there is an `!` in front of a function that returns `TRUE` or `FALSE` values, the opposite values are returned.  Essentially `!` is asking when the values are NOT `TRUE`.  The resulting object is a dataframe with 1 row and 21 columns.  The columns are the variables with the suffix representing the stat that was used.  This isn't very efficient.  Instead we want 1 row for each variable and 1 column for each statistic.  Since we have 3 variables and 7 stats, we want a 3 X 7 dataframe.  
 
 The `gather()` function turns the 1 X 21 dataframe into a 21 X 2 dataframe with the variable/stat indicator as one variable called `stat` and the value of that statistic for that variable as the second variable called `val`.  The `separate()` function splits the new `stat` variable into 2 variables using the `_` as the place where the split occurs.  This gives us a 21 X 3 data frame with one variable called `var` which is the variable from the original dataframe, a variable called `stat` which is the statistic that was performed on the variable, and a variable `val` which is the value of that statistic on that variable.  The `spread()` function is the compliment of `gather()`.  It creates a new variable for each unique value of `stat` and uses `var` implictly as grouping factor to assign the proper value to each statistic at each variable. The function knew to use `var` as the grouping variable because there are only 3 variables in the dataframe and we specified  2 of them for other arguments, so it assumes any non-assigned variables are grouping variables.  This results in a 3 X 7 dataframe where the rows represent the variables and the columns represent the statistics.  The elements are the values of each statistic for each variable.  
 
+There are many ways to get the same outcome when you use code.  No one way is "correct" but you should strive to make your code as efficient and easy to read as possible.  By efficient, I mean use as few lines of code as possible and use code that gets the job done as fast as possible.  As you learn to code don't worry about efficiency.  That will come with practice.
 
 ### Practicing with `dplyr`
 
@@ -314,7 +315,7 @@ http://www.stat.cmu.edu/~cshalizi/rmarkdown/
 
 ## Putting it all together
 
-Learning **R** and **Rstudi0** is easier if we can practice.  Let's open **RStudio** and make a RMardown document and read in data from this file https://raw.githubusercontent.com/vtmacox/teachr/master/data.csv.  This is made up data that looks at cholesterol levels and several variables that are related to cholesterol including hours of exercise, servings of fruit and vegetables, age, and if a person was taking cholesterol medication.
+Learning **R** and **Rstudio** is easier if we can practice.  Let's open **RStudio** and make a RMardown document and read in data from this file https://raw.githubusercontent.com/vtmacox/teachr/master/data.csv.  This is made up data that looks at cholesterol levels and several variables that are related to cholesterol including hours of exercise, servings of fruit and vegetables, age, and if a person was taking cholesterol medication.
 
 In the markdown document, create separate chunks for the following code objectives:
 - Read in data
@@ -334,4 +335,47 @@ When you finish your code, create an HTML or Word document with the results.
 I purposely didn't provide a lot of help here, because I want you to try to figure out how to do this yourself.  Use a combination of Googling and the `help()` function.  The idea isn't so much that you know how to do these tasks, but that you know how to learn how to do them.
 
 
+## Tidy data
 
+Now that you've learned some Advanced R techniques. It's time to learn how data need to be formated in order to analyze it.  Under most conditions, you want your data to be "tidy".  Tidy data is a term made popular by Hadely Wickham (creater of `dplyr` and `ggplot2`).  There are 3 principles of tidy data:
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each type of observational unit forms a table
+
+For prospective data (and some retrospective data) ensuring your data is tidy is all about how you structure your data.  If you are making your own database it should be tidy, otherwise your analyst will have to do a lot of work to clean it (and they'll hate you).  
+
+Let's look at this example :
+
+```{r preg, results="asis"}
+preg <- data.frame(name = c("John Smith", "Jane Doe", "Mary Johnson"), treatmenta = c(NA, 4, 6), treatmentb = c(18,1,7))
+
+knitr::kable(preg)
+
+```
+
+
+
+```{r case-quiz}
+quiz(
+  question("Why isn't this data tidy",
+    answer("Columns don't form variables"),
+    answer("Multiple observations per row", correct = TRUE)
+  )
+)
+```
+
+What would this dataset look like if it was tidy? 
+
+```{r, echo = TRUE, exercise.setup = "obese"}
+preg2 <- preg %>% 
+  tidyr::gather(treatment, n, treatmenta:treatmentb) %>%
+  dplyr::mutate(treatment = gsub("treatment", "", treatment)) %>%
+  dplyr::arrange(name, treatment)
+
+preg2
+```
+
+Now we have tidy data.
+
+In the code above we use the `gather()` function to combine `treatmenta` and `treatmentb` into two variables called `treatment` and `n`, where `treatment` indicates treatment a or treatment b, and `n` is the value of that treatment.  We then use the `mutate()` function to recode the `treatment` variable so we only have values of `a` and `b`.  The `gsub()` function substitutes any instance of "treatment" in the character variable `treatment` with nothing (essentially removing those instance).  The first argument is the string you want to substitute.  The second argument is the string (or number) you want to repalce it with.  In this instance `""` means we want to replace it with nothing.  The third argument is the variable you want to search in and make the substitutions.  The final line of code uses the `arrange()` function from `dplyr`.  This arranges the data by name first (alphabetically) and treatment second (also alphabetically).

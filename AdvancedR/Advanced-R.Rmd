@@ -234,13 +234,13 @@ The fourth plot removes the key by adding the `guide()` function and assigning t
 
 Using the space below create a scatter plot using `ggplot2` with data from the starwars dataframe. Put `height` on the y-axis and `mass` on the x-axis.  HINT: Google "scatter plot ggplot2"
 
-```{r exercise2, exercise = TRUE,  exercise.eval = TRUE}
+```{r exercise3, exercise = TRUE,  exercise.eval = TRUE}
 
 
 ```
 
 
-```{r exercise2-solution}
+```{r exercise3-solution}
 ggplot(data = starwars, aes(x = mass, y = height)) +
   geom_point(color = "red")
 
@@ -334,6 +334,7 @@ When you finish your code, create an HTML or Word document with the results.
     
 I purposely didn't provide a lot of help here, because I want you to try to figure out how to do this yourself.  Use a combination of Googling and the `help()` function.  The idea isn't so much that you know how to do these tasks, but that you know how to learn how to do them.
 
+For the solution go to http://rpubs.com/mattstat/310065.  
 
 ## Tidy data
 

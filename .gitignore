@@ -34,7 +34,8 @@ vignettes/*.pdf
 .Rproj.user
 
 # Shiny connect files
-/rsconnect/
+AdvancedR/rsconnect/
+LearningR/rsconnect/
 
 # Exclude .html files
 *.html

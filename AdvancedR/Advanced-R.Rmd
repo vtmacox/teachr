@@ -318,6 +318,7 @@ http://www.stat.cmu.edu/~cshalizi/rmarkdown/
 Learning **R** and **Rstudio** is easier if we can practice.  Let's open **RStudio** and make a RMarkdown document and read in data from this file https://raw.githubusercontent.com/vtmacox/teachr/master/data.csv.  This is made up data that looks at cholesterol levels and several variables that are related to cholesterol including hours of exercise, servings of fruit and vegetables, age, and if a person was taking cholesterol medication.
 
 In the markdown document, create separate chunks for the following code objectives:
+
 - Read in data
 - Assign proper data types to each variable
 - Recode the value `9` as `NA` for the `anxiety` variable
@@ -334,7 +335,7 @@ When you finish your code, create an HTML or Word document with the results.
     
 I purposely didn't provide a lot of help here, because I want you to try to figure out how to do this yourself.  Use a combination of Googling and the `help()` function.  The idea isn't so much that you know how to do these tasks, but that you know how to learn how to do them.
 
-For the solution go to http://rpubs.com/mattstat/310065.  
+For the solution go to http://rpubs.com/mattstat/317802.  
 
 ## Tidy data
 

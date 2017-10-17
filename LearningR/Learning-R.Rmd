@@ -144,6 +144,8 @@ x
 
 The `<-` symbol tells **R** you want to assign whatever is on the right of the symbol to the object on the left of the symbol.  In this example, we are assigning the value of `1 + 1` to the object `x`.  An important point is that **R** is evaluating the expression `1 + 1` and storing the value of the expression.  It doesn't actually store `1 + 1`.  Also, by default, **R** doesn't display objects unless explicitly requested.   
 
+**NOTE:** Object in **R** can be named anything you want, but have to start with a letter and NOT a number.  Object cannot be only numbers and cannot begin with a number.  An object name can contain numbers anywhere after the first letter.  It is common to use numbers at the end of an object name such as, `var1`, `var2`, etc.  Also, while variable names can technically have spaces in them, conventional naming of variables uses `_` or no spaces.  Generally, the only symbols you can use when naming an object are `_` or `.`.  Most other symbols have alternative purposes in **R**.    
+
 
 ### Your first object in **R**
 
@@ -224,7 +226,7 @@ Although **R** will let you store different data types in the same object, this 
 Think of the objects we've created so far as the folder in our filing cabinet example.  A `dataframe` or `list` would be the filing cabinet itself.  A `dataframe` is what we typically think of as a database.  Columns serve as variables and rows serve as observations. Variables can be of any type as long as all elements of the variable are the same type. Lists are more complicated and so we are not going to focus on them.  For now, just know that lists can contain anything including multiple dataframes or other lists.    
 
 ```{r case-quiz}
-quiz(
+quiz( 
   question("Like SAS, R is not case sensitive",
     answer("True"),
     answer("False", correct = TRUE)
@@ -234,8 +236,14 @@ quiz(
            answer("Continous", correct = TRUE),
            answer("Character"),
            answer("Integer")
+  ),
+  question("Which of the following is not a valid object name",
+           answer("VAR1"),
+           answer("var_1"),
+           answer("Var.1"),
+           answer("1var", correct = TRUE)
   )
-)
+)  
 ```
 
 
@@ -583,8 +591,21 @@ In the space below, use the `lapply()` function to return a list with the freque
 my_df <- lapply(starwars[, c("skin_color", "hair_color", "eye_color")], table)
 ```
 
+## Common **R** coding issues
 
+As you use **R**, you will inevitably run into errors.  Some errors are pretty common as you begin.  Here is a list of common errors:
 
+- Not having a closing `"`, `)`, or `}`
+    + Sometimes this is not an obvious issue because **R** won't always give you an error.  **RStudio** shows you the corresponding opening and closing symbol when you put the cursor next to the respective symbol.  You can systematically check all your opening and closing symbols in your code.  One tell tale sign that you forgot an opening/closing symbol is that there is a `+` sign in the console instead of a `>`.  If you see `+` then you are missing an opening/closing symbol.
+
+- Not outing text or files paths in `""`
+
+- Not specifying arguments correctly in functions
+    + Sometimes arguments in functions will not be correctly assigned.  This might be because you have put the arguments in the wrong order, you have provided invalid objects or responses to the object (i.e., an argument was expecting `TRUE` or `FALSE`, but you provided a number or a variable), or a default option for an argument is causing problems. In order to ensure everything is correct, check out the help file and/or explicitly assign all (or almost all) arguments.
+
+- Forgetting to put a `,` when indexing a dataframe
+    + This is probably the most common issue for me.  Say you have a dataframe that you are trying to subset.  The proper way to do it is `df[df$age <= 18,]`.  However I will often write `df[df$age <= 18]` forgetting the `,` after the condition to indicate I want all the variables of the dataframe.  When you do this you might get an error that looks like this `Error: Length of logical index vector must be 1 or 13 (the number of rows), not 87`. It won't look Exactly like this, but the first part up to `1` will be the same.  If you Google this, you will not find any answers.  You have to know that you are missing the `,` when indexing the dataframe.
+  
 ## Resources for learning **R**
 
 In this tutorial, you learned the basics on how to use **R**.  As I mentioned before, learning **R** is like learning another language.  You will have to practice often to get good at using it.

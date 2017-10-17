@@ -1,7 +1,7 @@
 ---
 title: "RMarkdown"
 author: "Matthew Cox-Martin"
-date: "August 10, 2017"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: html_document
 ---
 
@@ -63,7 +63,7 @@ data$anxiety <- if_else(data$anxiety == 9, NA_integer_, data$anxiety)
 
 The code below shows two methods of creating descriptive stats.  The first uses `psych::describe`.  This prints out useful infromation such as mean, median, range, min, max, skew, and kurtosis.  However, if you have factor variables, it does not output frequences.  The second method uses functions from the `qwraps2` package which creates tables that can be displayed in markdown documents.  
 
-```{r desc_stats, echo=TRUE}
+```{r desc_stats, echo=TRUE, results="markdown"}
 
 psych::describe(data)
 

@@ -18,20 +18,23 @@ knitr::opts_chunk$set(exercise.checker = checkr::checkr_tutor)
 
 This tutorial makes no assumptions about your previous experience with **R** or any other statistical software.  It is designed to help those with no experience in data analysis.
 
+This tutorial provides instructions for downloading, installing, and using **R** and **RStudio**, but this isn't necessary as you can run code within the tutorial and correct answers will be provided.  Additionally, there are quiz questions throughout to test your knowledge.
+
 ## Analyzing Data
 
 Understanding how data are read in and manipulated can help you be a better researcher
 
 In this tutorial we will focus on:
 
-- How to create databases
-- How new variables are created
 - Knowing which variables are which type
-- Knowing which analyses you can run based on the type of data you have
+- How new variables are created
+- How to create databases
 
 ### Data analysis programs
 
-Most popular data analysis programs for scholarly articles of 2016
+In 2016 **R** surpassed SAS as the #2 most popular statistical software for published scholarly articles. 
+
+Most popular data analysis programs for scholarly articles in 2016
 
 ![](https://i1.wp.com/r4stats.com/wp-content/uploads/2017/06/Fig_2a_ScholarlyImpact2016-3.png)
 
@@ -41,7 +44,7 @@ http://r4stats.com/articles/popularity/
 
 **R** is an open source, object oriented "language and environment for statistical computing and graphics".
 
-www.r-project.org 
+https://www.r-project.org/
 
 **R** is popular because:
 
@@ -61,9 +64,9 @@ www.r-project.org
 
 ## **RStudio**
 
-The basic **R** GUI is not optimized for users
+The basic **R** graphic user interface (GUI) is not optimized for users
 
-**RStudio** is a separate integrated development environment that enhances the usability of R in several ways.
+**RStudio** is a separate integrated development environment (IDE) that enhances the usability of R in several ways.
 
 Basic enhancements from R studio include:
 
@@ -84,7 +87,7 @@ The most useful elements of R studio include:
 
 ## Install R
 
-- Go to www.r-project.org and click "download R"
+- Go to https://www.r-project.org/ and click "download R"
 - Select a server from which to download **R** (try https://cloud.r-project.org/)
 - Select the link for the operating system you are using
     + If you're using Windows click "install R for the first time" and the click the link that begins "Download..."
@@ -108,7 +111,7 @@ In this section we will talk about why data analysts use code to analyze data in
 
 ### Please don't make me code
 
-There are programs that allow you do do point and click methods for analysis, with **SPSS** being the most popular.  Although the learning curve for these is not as step, point and click is inefficient and does not lend itself to reproducibility.  
+There are programs that allow you to do point and click methods for analysis, with **SPSS** being the most popular.  Although the learning curve for these is not as steep, point and click is inefficient and does not lend itself to reproducibility.  
 
 For example, if I wanted to plot the correlation between 50 variables, this would take forever in **SPSS** because I would have to point and click each graph. But in **R** this can be done in one or two lines of code.  Additionally, point and click interfaces have defaults that you might not be aware of and don't want.  Also, point and click methods often limit what you can do whereas code is much more flexible (with the trade of being it is more complicated).
 
@@ -121,7 +124,7 @@ For this series, we are going to focus on using code.  Feel free to explore a gr
 - Red-R
 - R Analytic Flow
 
-There is a steep learning curve to learning how to code in **R**.  Learning to code is a lot like learning another language.  You have to practice often.  Fortunately, there are more resources for learning **R** than almost any other program.
+While this tutorial isn't designed to teach you how to code, you will learn the basics of coding so that you can teach yourself how to code in **R** if you are interested.  There is a steep learning curve to learning how to code in **R**.  Learning to code is a lot like learning another language.  You have to practice often.  Fortunately, there are more resources for learning **R** than almost any other program.  
 
 
 ## Objects in **R**
@@ -130,7 +133,7 @@ As mentioned before **R** is an object-oriented programming language in addition
 
 ### Objects example
 
-Almost anything can be stored as an object in **R**.  Here, we save the operation of `1 + 1` to an object called `x` and then print that object. **NOTE:** **R** is case sensitive so an object called `x` is different than an object called `X`.
+Almost anything can be stored as an object in **R**.  Here, we save the operation of `1 + 1` to an object called `x` and then print that object. **NOTE:** **R** is case sensitive so an object called `x` is different than an object called `X`.  In the example below you will see the first section is the we write the code and the second section is the output from the code we have written.
 
 ```{r r_object, echo=TRUE}
 
@@ -194,7 +197,7 @@ obj_types <- data.frame(data_type = c("Continuous", "Categorical", "Count", "Tex
 knitr::kable(obj_types)
 ```
 
-An object that contains multiple data points of the same type is called a vector.  Our object `numbers` above would be considered a numeric vector and the `char_ob2` object would be considered a character vector. An individual datum in a vector is called an element.  So the first element in our `numbers` object is 1.  We can tell **R** to pull specific element within an object by specifying the elements position in the object. For example:
+An object that contains multiple data points of the same type is called a vector.  Our object `numbers` above would be considered a numeric vector and the `char_ob2` object would be considered a character vector. An individual datum in a vector is called an element.  So the first element in our `numbers` object is 1.  We can tell **R** to pull a specific element within an object by specifying the element's position in the object. For example:
 
 ```{r, echo=TRUE, exercise.setup = "obj"}
 numbers[3]
@@ -214,11 +217,11 @@ In the code below, print the output for the 2nd element in the object `char_ob2`
 char_ob2[2]
 ```
 
-When we combine multiple numeric vectors of the same length together we have a matrix.  Understanding matrices is important to understanding how to manipulate data sets.
+When we combine multiple numeric vectors of the same length together we have a matrix.  A matrix is a specific type of element that only contains numbers.  Understanding matrices is important to understanding how to manipulate data sets.
 
 Although **R** will let you store different data types in the same object, this generally isn't a good idea.  If you have multiple types of data that you want to store in the same object, use a `dataframe` or a `list`.  
 
-Think of the objects we've created so far as the folder in our filing cabinet example.  A `dataframe` or `list` would be the filing cabinet.  A `dataframe` is what we typically think of as a database.  Columns serve as variables and rows serve as observations. Variables can be of any type as long as all elements of the variable are the same type. Lists are more complicated and so we are not going to focus on them.  For now, just know that lists can contain anything including multiple dataframes or other lists.    
+Think of the objects we've created so far as the folder in our filing cabinet example.  A `dataframe` or `list` would be the filing cabinet itself.  A `dataframe` is what we typically think of as a database.  Columns serve as variables and rows serve as observations. Variables can be of any type as long as all elements of the variable are the same type. Lists are more complicated and so we are not going to focus on them.  For now, just know that lists can contain anything including multiple dataframes or other lists.    
 
 ```{r case-quiz}
 quiz(
@@ -242,7 +245,7 @@ Now that we know about objects and dataframes, we can finally get to real data. 
 
 ### What is a function
 
-Broadly speaking a `function` is a specialized tool for performing certain tasks.  We saw before how we used the `c()` to combine values in order to assign them to an object.  There are several functions built in to **R** that we will use, but you can create your own function.  Let's start with a basic example.  We can write a function that adds any two numbers together.  
+Broadly speaking a `function` is a specialized tool for performing certain tasks.  We saw before how we used the `c()` function to combine values in order to assign them to an object.  There are several functions built in to **R** that we will use, but you can create your own functions.  Let's start with a basic example.  We can write a function that adds any two numbers together.  
 
 ```{r add-function, echo=TRUE}
 # This is the function
@@ -262,6 +265,8 @@ When we call the `add()` function we specified the argument values.  This is gen
 
 In general, you want to create a function when you are using the same set of code over and over again.  Using a function saves space and time.  For example, if you needed to recode or reformat data, using a function might save you a lot of time.  
 
+**NOTE:** It is best not to name functions or objects with the same name as base **R** functions.  For example you wouldn't want to name your function `function` because there is already a base **R** function called `function`.  As you become more familiar with **R** you would learn more about base functions.
+
 ### Packages in **R**
 
 Packages are a collection of functions that other users create that you can download and add to **R** to increase its functionality.  Packages are similar to apps on your phone.
@@ -277,7 +282,7 @@ You can install the package by using `install.packages()` function:
 install.packages("dplyr", repos = "http://cran.rstudio.com")
 ```
 
-Once the package is installed, you can load the package using the `library()` function:
+The `install.packages()` above uses two arguments.  The first is the name of the package in quotations.  The second argument is telling **R** where to download the function (called a repo).  Here the repo is the **Rstudio** website.   Once the package is installed, you can load the package using the `library()` function:
 
 ```{r packages, echo=TRUE, eval = FALSE}
 library(dplyr)
@@ -287,7 +292,7 @@ Note the use of quotes around the package name for the `install.packages()` func
 
 Packages only need to be installed once, but they need to be loaded via `library()` every time your restart **R**.  Depending on how popular a package is, packages can be updated on a regular basis.  In **RStudio**, you can update installed packages by clicking on the "Tools" tab at the top and then clicking "Check for Package Updates".
 
-NOTE: Some packages have the same function names as other already installed functions.  When you load a package that has the same function name as some already installed packages, **R** prioritizes the most recently installed packages.  For example, say we have a package already loaded that uses a function called `add()` then we loaded a new package that also has a function called `add()` (but this function does something different). When you call the function it will use the function from the most recently loaded package.  Because of this, you don't want to load packages you aren't using.  Later, we'll talk about ways around this problem.
+**NOTE:** Some packages have the same function names as other already installed functions.  When you load a package that has the same function name as some already installed packages, **R** prioritizes the most recently installed packages, which is called masking.  For example, say we have a package already loaded that uses a function called `add()` then we loaded a new package that also has a function called `add()` (but this function does something different). When you call the function it will use the function from the most recently loaded package.  Because of this, you don't want to load packages you aren't using.  Later, we'll talk about ways around this problem.
 
 
 ## Importing data with functions
@@ -368,7 +373,7 @@ tolerance$age
 
 ```
 
-Depending on what function you are using to read in your data, **R** makes certain assumptions about the type of data you are reading in.  For example, if you are reading in text using the `read.table()` function assumes any text is a factor (a categorical variable).  For example if you had a variable `race` and the response are white, black, hispanic, etc., it would think that variable is categorical and could randomly assign a value as the reference category.  Usually you want `white` as the reference category but this may not be the case.  You can assign variable types using functions.  For example we could use the `as.factor(df$race, levels = c("white", "black", "hispanic", "asian"))` function to explicate we want the variable to be a factor and because we put `white` as the first level in the `levels` argument, `white` is the reference category.  Usually, you can use `as.[data type]` to explicate a data type for a variable.  
+Depending on what function you are using to read in your data, **R** makes certain assumptions about the type of data you are reading in.  For example, if you are reading in text using the `read.table()`, the function assumes any text is a factor (a categorical variable).  For example if you had a variable `race` and the response are white, black, hispanic, etc., it would think that variable is categorical and could randomly assign a value as the reference category.  Usually you want `white` as the reference category but this may not be the case.  You can assign variable types using functions.  For example we could use the `as.factor(df$race, levels = c("white", "black", "hispanic", "asian"))` function to explicate we want the variable to be a factor and because we put `white` as the first level in the `levels` argument, `white` is the reference category.  Usually, you can use `as.[data type]` to explicate a data type for a variable.  
 
 ## Manipulating Data
 
@@ -408,7 +413,7 @@ In the code above we called the `mass` and `height` variables from the dataframe
 
 ### Missing Data
 
-Let's look at how much missing data we have for our new variable.  We will use the `is.na()` to determine if data are missing
+Let's look at how much missing data we have for our new variable.  We will use the `is.na()` function to determine if data are missing
 
 ```{r miss_bmi, echo = TRUE, exercise.setup = "bmi"}
 is.na(starwars$bmi)
@@ -442,7 +447,7 @@ The first argument of the `ifelse()` function is the conditional statement.  The
 
 The code above evaluates whether the `bmi` variable is greater than or equal to 30 (the conditional statement).  If it is true it assigns our new variable `obese` to the value 1.  If it is false, it assigns the variable the value of 0.  We could have assigned it any value we want (like `TRUE` and `FALSE` or "Yes" and "No"), but it's better to use numeric coding when possible.
 
-The code above is a very simple conditional statement.  If you have very simple conditional statements, `ifelse()` is easier to use (i.e., is has less code to run).  You can create very complicated conditional statements using the `if()` and `else()` statements, but we won't focus on that here.  
+The code above is a very simple conditional statement.  If you have very simple conditional statements, `ifelse()` is easier to use (i.e., it has less code to run).  You can create very complicated conditional statements using the `if()` and `else()` statements, but we won't focus on that here.  
 
 There are several conditional operators that are worth remember
 
@@ -616,6 +621,11 @@ https://www.youtube.com/playlist?list=PLegh-m6sYwadxWLUwI-5Lnlmv8ZpK0Xur
 http://rcompanion.org/handbook/  
 
 Good for biostats
+
+**R Data**
+http://varianceexplained.org/RData/
+
+Website that goes over R coding and analyses
 
 **Swirl**
 "swirl" pacakge

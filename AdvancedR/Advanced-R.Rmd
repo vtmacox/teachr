@@ -71,7 +71,9 @@ starwars <- starwars %>%
 
 In the code above we start with signing a new value to the dataframe `starwars`.  Essentially we are just overwriting this dataframe with the same dataframe plus the new variable we will create.  To the right of the assign symbol, we reference the data that we will be using--in this case the `starwars` dataframe.  The `%>%` symbol is part of the piping system.  It tells **R** that the code on the following lines uses whatever came before that symbol.  On the next line we use the `mutate()` function from `dplyr`.  This function creates variables.  In the function we specify the variable name we want to create and set it equal to the equation for calculating BMIs.  Notice that we don't have to reference the starwars dataframe at any point following the first reference, yet we still know what dataframe we are referencing from the first line of code.
 
-While we didn't save a lot of time and space for creating one variable, if you were creating several variables, this would be a huge time saver.  
+While we didn't save a lot of time or space for creating one variable, if you were creating several variables, this would be a huge time saver.  This is because we don't have to keep referencing the dataframe via the `$` every time we want to create a variable. 
+
+**Side note:**  We could use the `attach()` function to get around referencing variables.  Essentially this is like using `library()` for a package but instead of loading a package you are loading a dataset.  However, this causes the same problems with masking that you run into with the `library()` function, in that any of your variables in your dataset you attached will mask all the other objects you have created in the global environment.  As a result, I would recommend not using the `attach()` function.  
 
 ### Subsetting data with `dplyr`
 
